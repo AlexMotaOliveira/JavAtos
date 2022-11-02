@@ -1,2 +1,10 @@
-package PACKAGE_NAME;public enum DiaDaSemana {
+public enum DiaDaSemana {
+    Segunda,
+    Terca,
+    Quarta,
+    Quinta,
+    Sexta,
+    Sabado,
+    Domingo
+
 }

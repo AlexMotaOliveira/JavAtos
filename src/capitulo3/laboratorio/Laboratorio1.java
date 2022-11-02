@@ -1,4 +1,4 @@
-package laboratorio;
+package capitulo3.laboratorio;
 
 public class Laboratorio1 {
 
