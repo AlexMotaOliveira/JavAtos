@@ -23,4 +23,5 @@ public class Laboratorio2 {
             default:   System.out.println("O "+ mes + " escolhido tem 28 ou 29 dias"); break;
         }
     }
+
 }
