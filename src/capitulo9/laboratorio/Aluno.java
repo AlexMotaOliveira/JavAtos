@@ -1,7 +1,9 @@
 package capitulo9.laboratorio;
 
 
-public class Aluno extends Pessoa {
+import capitulo9.Analista;
+
+public class Aluno extends Pessoa  {
     private float mensalidade;
     private String curso;
 
