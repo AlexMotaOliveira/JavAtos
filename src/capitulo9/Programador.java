@@ -11,6 +11,8 @@ public class Programador extends Pessoa {
         this.linguagem = linguagem;
     }
 
+    public Programador(){}
+
     public String getLinguagem() {
         return linguagem;
     }
@@ -21,8 +23,13 @@ public class Programador extends Pessoa {
 
 
     @Override
-    public void setNome(String nome) {
+    public final void setNome(String nome) {
         this.nome = nome.toLowerCase();
+    }
+
+
+    public void setNome(int nome) {
+
     }
 
     @Override
@@ -33,5 +40,10 @@ public class Programador extends Pessoa {
                 ", sobreNome='" + sobreNome + '\'' +
                 ", cpf='" + cpf + '\'' +
                 '}';
+    }
+
+    @Override
+    protected String getNomeComSobrenome() {
+        return super.getNomeComSobrenome();
     }
 }

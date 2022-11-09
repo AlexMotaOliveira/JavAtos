@@ -1,5 +1,7 @@
 package capitulo8;
 
+import capitulo9.Pessoa;
+
 public class Cap8_Lab2 {
     public static void main(String[] args) {
         if(args.length > 0){
@@ -12,6 +14,7 @@ public class Cap8_Lab2 {
         }
         else{
             System.out.println("Entre com valores válidos para as idades.");
+
         }
     }
 }

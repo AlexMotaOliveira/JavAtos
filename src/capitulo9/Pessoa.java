@@ -1,7 +1,5 @@
 package capitulo9;
 
-import java.util.Locale;
-
 public class Pessoa {
 
     public String nome;
@@ -52,7 +50,6 @@ public class Pessoa {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-
     @Override
     public String toString() {
         return "Pessoa{" +
@@ -62,4 +59,11 @@ public class Pessoa {
                 ", cpf='" + cpf + '\'' +
                 '}';
     }
+
+
+    protected String getNomeComSobrenome() {
+        return nome.concat(" ").concat(sobreNome).concat(":");  // nome + sobreNome
+    }
+
+
 }
