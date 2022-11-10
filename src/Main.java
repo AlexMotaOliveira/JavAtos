@@ -1,3 +1,5 @@
+import capitulo2.DiaDaSemana;
+
 public class Main {
     public static void main(String[] args) {
 

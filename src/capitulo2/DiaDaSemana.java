@@ -1,3 +1,5 @@
+package capitulo2;
+
 public enum DiaDaSemana {
     Segunda,
     Terca,
