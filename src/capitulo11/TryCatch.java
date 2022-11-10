@@ -15,7 +15,7 @@ public class TryCatch {
         try {
 //            listaNumeros[6] = 23;
 //            Integer.parseInt("Alex");
-            get();
+            somar(10);
 
             Aluno aluno = null;
             System.out.println(aluno.getNome());
@@ -44,7 +44,14 @@ public class TryCatch {
 //        }
     }
 
-    public static void get() throws ConverterException {
+    /**
+     * @param valor1 um numero qualquer
+     * @return valor inteiro que representa algo
+     * @throws ConverterException
+     * @see Aluno
+     */
+    public static int somar(int valor1) throws ConverterException {
         System.out.println("erros checados");
+        return 0;
     }
 }

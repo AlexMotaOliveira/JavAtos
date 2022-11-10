@@ -7,11 +7,14 @@ public class ExercicioIdade {
     // comentario em uma linha
     /*
     comentario com varias linhas seguidas
+    comentario com varias linhas seguidas
+    comentario com varias linhas seguidas
      */
 
     /**
      * @author Alex Mota
      * @param args varios argumentos que podem ser passados para executar o metodo main
+     *
      *
      */
     public static void main(String[] args) {
