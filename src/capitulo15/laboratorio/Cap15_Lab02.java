@@ -24,6 +24,5 @@ public class Cap15_Lab02 {
             System.out.print("Nome: " + estudante.getNome());
             System.out.println("- Media: " + estudante.getMedia());
         });
-
     }
 }
