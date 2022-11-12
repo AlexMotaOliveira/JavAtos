@@ -6,6 +6,13 @@ public class Estudante {
     private double notaMatematica;
     private double notaPortugues;
     private double media;
+    private String cpf;
+    private int id;
+
+
+    public Estudante() {
+
+    }
 
     public Estudante(String nome, double notaMatematica, double notaPortugues) {
         this.nome = nome;
@@ -43,5 +50,33 @@ public class Estudante {
 
     public void setMedia(double media) {
         this.media = media;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Estudante{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", notaMatematica=" + notaMatematica +
+                ", notaPortugues=" + notaPortugues +
+                ", media=" + media +
+                ", cpf='" + cpf + '\'' +
+                '}';
     }
 }
