@@ -2,8 +2,6 @@ package capitulo19;
 
 import capitulo15.laboratorio.Estudante;
 
-import java.lang.reflect.Type;
-import java.math.BigDecimal;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
