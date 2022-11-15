@@ -46,7 +46,7 @@ public class Aluno {
     }
 
     public double getMedia() {
-        return media;
+        return (notaMatematica + notaPortugues) / 2;
     }
 
     public void setMedia(double media) {
@@ -71,7 +71,7 @@ public class Aluno {
 
     @Override
     public String toString() {
-        return "Estudante{" +
+        return "Aluno{" +
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", notaMatematica=" + notaMatematica +
