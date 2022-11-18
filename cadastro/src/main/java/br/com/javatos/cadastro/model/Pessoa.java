@@ -37,6 +37,8 @@ public class Pessoa {
 
     @Column(nullable = false) //TODO inserir com formato br e validar a inserção
     @Past
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", locale = "pt-BR")
+    private Date data ;
     private Date dataDeNascimento;
 
     @Column(nullable = false, unique = true)
