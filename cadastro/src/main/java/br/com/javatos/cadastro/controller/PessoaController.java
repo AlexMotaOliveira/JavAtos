@@ -3,8 +3,11 @@ package br.com.javatos.cadastro.controller;
 import br.com.javatos.cadastro.model.Pessoa;
 import br.com.javatos.cadastro.service.PessoaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,7 +19,8 @@ public class PessoaController {
 
     // /pessoa
     @PostMapping
-    public Pessoa salvar(@RequestBody Pessoa pessoa) {
+    @ResponseStatus(HttpStatus.CREATED)
+    public Pessoa salvar(@Valid @RequestBody Pessoa pessoa) {
         return pessoaService.salvar(pessoa);
     }
 
@@ -30,10 +34,20 @@ public class PessoaController {
         return pessoaService.buscar(id);
     }
 
+    @GetMapping("/cpf/{cpf}")
+    public Pessoa buscar(@PathVariable String cpf){
+        return pessoaService.buscarPorCpf(cpf);
+    }
+
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void apagar(@PathVariable Long id){
          pessoaService.apagar(id);
     }
 
-
+    @DeleteMapping("/cpf/{cpf}")
+    @Transactional
+    public void apagar(@PathVariable String cpf){
+        pessoaService.apagarPorCpf(cpf);
+    }
 }

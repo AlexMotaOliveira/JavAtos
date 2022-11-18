@@ -29,4 +29,12 @@ public class PessoaService {
     public void apagar(Long id) {
         pessoaRepository.deleteById(id);
     }
+
+    public Pessoa buscarPorCpf(String cpf) {
+        return pessoaRepository.findByCpf(cpf).orElse(null);
+    }
+
+    public void apagarPorCpf(String cpf) {
+        pessoaRepository.deleteByCpf(cpf);
+    }
 }
