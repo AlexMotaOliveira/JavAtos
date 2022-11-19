@@ -4,7 +4,9 @@ import br.com.javatos.cadastro.model.Pessoa;
 import br.com.javatos.cadastro.repository.PessoaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,9 +23,9 @@ public class PessoaService {
         Pessoa pessoaModel = null;
         Optional<Pessoa> byCpf = pessoaRepository.findByCpf(pessoa.getCpf());
         Optional<Pessoa> byEmail = pessoaRepository.findByEmail(pessoa.getEmail());
-        if (!byCpf.isPresent() && !byEmail.isPresent()) {
+        if (byCpf.isEmpty() && byEmail.isEmpty()) {
             pessoaModel = pessoaRepository.save(pessoa);
-            log.info("Objeto salvo {}", pessoaModel);
+            log.info("Objeto salvo {}:", pessoaModel);
         } else {
             log.info("cpf ou email já cadastrado");
         }
@@ -36,15 +38,29 @@ public class PessoaService {
     }
 
     public Pessoa buscar(Long id) {
-        return pessoaRepository.findById(id).orElse(null);
+        return pessoaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Id não localizado"));
     }
 
     public void apagar(Long id) {
-        pessoaRepository.deleteById(id);
+        try {
+            pessoaRepository.deleteById(id);
+        } catch (RuntimeException e) {
+            throw new RuntimeException("id não localizado");
+        }
     }
 
-    public Pessoa buscarPorCpf(String cpf) {
-        return pessoaRepository.findByCpf(cpf).orElse(null);
+    public ResponseEntity<Pessoa> buscarPorCpf(String cpf) {
+        try {
+            Optional<Pessoa> pessoa = pessoaRepository.findByCpf(cpf);
+            if (pessoa.isEmpty()) {
+                return ResponseEntity.notFound().build(); // status code 404
+            }
+            return ResponseEntity.ok(pessoa.get()); // status code 200 com um body
+        } catch (RuntimeException e) {
+            log.error("erro na colsulta {}", e);
+        }
+        return ResponseEntity.internalServerError().build(); // status code 500
     }
 
     public void apagarPorCpf(String cpf) {

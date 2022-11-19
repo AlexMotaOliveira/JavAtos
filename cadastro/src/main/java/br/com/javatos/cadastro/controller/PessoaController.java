@@ -5,6 +5,7 @@ import br.com.javatos.cadastro.service.PessoaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
@@ -38,13 +39,14 @@ public class PessoaController {
     }
 
     @GetMapping("/cpf/{cpf}")
-    public Pessoa buscar(@PathVariable String cpf) {
+    public ResponseEntity<Pessoa> buscar(@PathVariable String cpf) {
         return pessoaService.buscarPorCpf(cpf);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void apagar(@PathVariable Long id) {
+        log.warn("excluindo uma pessoa");
         pessoaService.apagar(id);
     }
 
