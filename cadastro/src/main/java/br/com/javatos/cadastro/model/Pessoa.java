@@ -2,14 +2,14 @@ package br.com.javatos.cadastro.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import lombok.NonNull;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.UUID;
 
@@ -19,7 +19,7 @@ import java.util.UUID;
 public class Pessoa {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "v_nome_completo", length = 300, nullable = false)
@@ -27,21 +27,20 @@ public class Pessoa {
     @Size(min = 2, max = 300, message = "nome invalido")
     private String nome;
 
-    @Column(name = "v_email", length = 200, nullable = false)
+    @Column(name = "v_email", length = 200, nullable = false, unique = true)
     @Email(message = "email informado invalido")
     private String email;
 
     @Column(name = "v_cpf", length = 11, nullable = false, unique = true)
-    @CPF(message = "cpf informado invalido")
+//    @CPF(message = "cpf informado invalido")
     private String cpf;
 
     @Column(nullable = false) //TODO inserir com formato br e validar a inserção
     @Past
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", locale = "pt-BR")
-    private Date data ;
     private Date dataDeNascimento;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, updatable = false)
     private String matricula = UUID.randomUUID().toString();
 
     @CreationTimestamp
