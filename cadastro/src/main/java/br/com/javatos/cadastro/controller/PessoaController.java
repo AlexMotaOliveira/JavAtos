@@ -5,6 +5,7 @@ import br.com.javatos.cadastro.service.PessoaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ public class PessoaController {
 
     // /pessoa
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     public Pessoa salvar(@Valid @RequestBody Pessoa pessoa) {
         log.info("iniciando o cadastro de uma pessoa: {}", pessoa);
         return pessoaService.salvar(pessoa);
@@ -51,7 +52,8 @@ public class PessoaController {
     }
 
     @DeleteMapping("/cpf/{cpf}")
-    @Transactional
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ResponseBody
     public void apagar(@PathVariable String cpf) {
         pessoaService.apagarPorCpf(cpf);
     }

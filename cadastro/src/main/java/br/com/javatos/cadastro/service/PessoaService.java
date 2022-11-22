@@ -1,12 +1,14 @@
 package br.com.javatos.cadastro.service;
 
+import br.com.javatos.cadastro.exception.errors.DuplicacaoCadastroException;
+import br.com.javatos.cadastro.exception.errors.PessoaExceptionNotFound;
 import br.com.javatos.cadastro.model.Pessoa;
 import br.com.javatos.cadastro.repository.PessoaRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ObjectUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,17 +20,13 @@ public class PessoaService {
 
     private final PessoaRepository pessoaRepository;
 
+    @Async
     public Pessoa salvar(Pessoa pessoa) {
         log.info("persistindo o objeto");
-        Pessoa pessoaModel = null;
-        Optional<Pessoa> byCpf = pessoaRepository.findByCpf(pessoa.getCpf());
-        Optional<Pessoa> byEmail = pessoaRepository.findByEmail(pessoa.getEmail());
-        if (byCpf.isEmpty() && byEmail.isEmpty()) {
-            pessoaModel = pessoaRepository.save(pessoa);
-            log.info("Objeto salvo {}:", pessoaModel);
-        } else {
-            log.info("cpf ou email já cadastrado");
-        }
+        existeCpfOuEmail(pessoa); // possivelmente lança uma exception
+        // esperar 30s
+        Pessoa pessoaModel = pessoaRepository.save(pessoa);
+        log.info("Objeto salvo {}:", pessoaModel);
         return pessoaModel;
     }
 
@@ -39,7 +37,7 @@ public class PessoaService {
 
     public Pessoa buscar(Long id) {
         return pessoaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Id não localizado"));
+                .orElseThrow(() -> new PessoaExceptionNotFound("Id não localizado"));
     }
 
     public void apagar(Long id) {
@@ -64,6 +62,21 @@ public class PessoaService {
     }
 
     public void apagarPorCpf(String cpf) {
+        Optional<Pessoa> pessoa = pessoaRepository.findByCpf(cpf);
+        if (pessoa.isEmpty()) {
+            throw new PessoaExceptionNotFound("não foi possivel a exclusão por cpf");
+        }
         pessoaRepository.deleteByCpf(cpf);
+    }
+
+    private void existeCpfOuEmail(Pessoa pessoa) {
+        Optional<Pessoa> pessoaEntidadeCpf = pessoaRepository.findByCpf(pessoa.getCpf());
+        Optional<Pessoa> pessoaEntidadeEmail = pessoaRepository.findByEmail(pessoa.getEmail());
+        if (pessoaEntidadeEmail.isPresent()) {
+            throw new DuplicacaoCadastroException("email já cadastrado");
+        }
+        if (pessoaEntidadeCpf.isPresent()) {
+            throw new DuplicacaoCadastroException("cpf já cadastrado");
+        }
     }
 }
