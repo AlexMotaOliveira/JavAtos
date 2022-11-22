@@ -1,7 +1,9 @@
 package br.com.javatos.cadastro.service;
 
+import br.com.javatos.cadastro.controller.ConsultaCep;
 import br.com.javatos.cadastro.exception.errors.DuplicacaoCadastroException;
 import br.com.javatos.cadastro.exception.errors.PessoaExceptionNotFound;
+import br.com.javatos.cadastro.model.Endereco;
 import br.com.javatos.cadastro.model.Pessoa;
 import br.com.javatos.cadastro.repository.PessoaRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,12 +21,13 @@ import java.util.Optional;
 public class PessoaService {
 
     private final PessoaRepository pessoaRepository;
+    private final ConsultaCep pessoaRepositoryCep;
 
-    @Async
     public Pessoa salvar(Pessoa pessoa) {
         log.info("persistindo o objeto");
         existeCpfOuEmail(pessoa); // possivelmente lança uma exception
-        // esperar 30s
+        Endereco endereco = pessoaRepositoryCep.buscarCep(pessoa.getEndereco().getCep());
+        pessoa.setEndereco(endereco);
         Pessoa pessoaModel = pessoaRepository.save(pessoa);
         log.info("Objeto salvo {}:", pessoaModel);
         return pessoaModel;

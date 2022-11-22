@@ -1,9 +1,11 @@
 package br.com.javatos.cadastro.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -13,9 +15,12 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.UUID;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+
 @Entity
 @Table(name = "tb_Pessoa")
 @Data
+@JsonInclude(NON_NULL)
 public class Pessoa {
 
     @Id
@@ -41,9 +46,18 @@ public class Pessoa {
     private Date dataDeNascimento;
 
     @Column(nullable = false, unique = true, updatable = false)
+    @JsonIgnore // não exibe essa informação no response
     private String matricula = UUID.randomUUID().toString();
 
     @CreationTimestamp
+    @JsonIgnore // não exibe essa informação no response
     private Date dataDoCadatro;
+
+    //    @OneToMany // 1:N
+    //    @ManyToOne // N:1
+    //    @ManyToMany// N:N
+    //    @OneToOne  // 1:1
+    @Embedded
+    Endereco endereco;
 
 }
