@@ -1,12 +1,12 @@
 package br.com.javatos.cursos.controller;
 
+import br.com.javatos.cursos.model.Curso;
 import br.com.javatos.cursos.model.Disciplina;
 import br.com.javatos.cursos.service.DisciplinaService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -25,4 +25,8 @@ public class DisciplinaController {
         // ok retornar ou não a disciplina
     }
 
+    @GetMapping
+    public List<Disciplina> listarTodos(){
+        return disciplinaService.listarTodos();
+    }
 }
