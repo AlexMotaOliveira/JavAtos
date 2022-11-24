@@ -1,4 +1,4 @@
-package br.com.javatos.cursos.controller;
+package br.com.javatos.cursos.controller2;
 
 import br.com.javatos.cursos.model.Nota;
 import br.com.javatos.cursos.service.NotaService;

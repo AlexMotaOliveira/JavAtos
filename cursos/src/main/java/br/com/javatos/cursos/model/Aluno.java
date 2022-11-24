@@ -3,6 +3,7 @@ package br.com.javatos.cursos.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -22,8 +23,8 @@ public class Aluno {
     private Endereco endereco;
 
     @ManyToMany
-    private List<Curso> cursos;
+    private List<Curso> cursos = new ArrayList<>();
 
     @ManyToMany
-    private List<Nota> notas;
+    private List<Nota> notas = new ArrayList<>();
 }
