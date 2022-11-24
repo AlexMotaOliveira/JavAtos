@@ -37,6 +37,10 @@ public class AlunoController {
 
     @PutMapping
     @ApiOperation(value = "Alterar os dados de um Aluno")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "criado"),
+            @ApiResponse(code = 500, message = "falha ao conectar com o banco de dados")
+    })
     public Aluno alterar(@RequestBody Aluno aluno){
         return alunoService.alterar(aluno);
     }
