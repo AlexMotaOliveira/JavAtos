@@ -36,4 +36,12 @@ public class AlunoService {
     public List<Aluno> listarTodos() {
         return alunoRepository.findAll();
     }
+
+    public Aluno alterar(Aluno aluno) {
+        Aluno alunoEntity = alunoRepository.findById(aluno.getId()).orElseThrow();
+        alunoEntity.getCursos().get(0).setId(aluno.getId());
+        alunoEntity.getNotas().get(0).setId(aluno.getId());
+
+        return alunoRepository.save(alunoEntity);
+    }
 }
