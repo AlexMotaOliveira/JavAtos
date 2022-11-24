@@ -28,12 +28,8 @@ public class AlunoController {
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "Listar todos os alunos")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "sucesso"),
             @ApiResponse(code = 201, message = "criado"),
-            @ApiResponse(code = 401, message = "vc não tem autorização"),
-            @ApiResponse(code = 403, message = "vc não pode ver o que tem aqui"),
-            @ApiResponse(code = 404, message = "não tem nada aqui"),
-            @ApiResponse(code = 500, message = "falha do programador")
+            @ApiResponse(code = 500, message = "falha ao conectar com o banco de dados")
     })
     public List<Aluno> listarTodos(){
         return alunoService.listarTodos();

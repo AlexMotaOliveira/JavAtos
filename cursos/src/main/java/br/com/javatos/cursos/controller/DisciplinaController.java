@@ -1,4 +1,4 @@
-package br.com.javatos.cursos.controller2;
+package br.com.javatos.cursos.controller;
 
 import br.com.javatos.cursos.model.Curso;
 import br.com.javatos.cursos.model.Disciplina;
