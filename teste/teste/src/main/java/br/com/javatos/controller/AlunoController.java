@@ -22,7 +22,7 @@ public class AlunoController {
     private static Logger logger = Logger.getLogger(String.valueOf(AlunoController.class));
     @PostMapping("/aluno") // metodo e recurso = URI
     public Aluno salvar(@RequestBody Aluno aluno) {
-        logger.info("Salvando aluno: " + aluno);
+        logger.info("Salvando aluno:  " + aluno);
         return alunoService.salvar(aluno);
     }
 
