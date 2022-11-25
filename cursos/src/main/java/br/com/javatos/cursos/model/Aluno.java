@@ -29,16 +29,16 @@ public class Aluno {
 
     private String testeHenriqueBolnaldo;
 
-    @ApiModelProperty(example = "Alex Mota")
+    @ApiModelProperty(example = "Henrique Martins")
     @NotNull
     @Size(min = 2, max = 50)
     private String nome;
 
-    @ApiModelProperty(example = "12312312312", required = true)
+    @ApiModelProperty(example = "10895992000", required = true)
     @CPF
     private String cpf;
 
-    @ApiModelProperty(example = "alex@alex.com", required = true)
+    @ApiModelProperty(example = "teste@gmail.com", required = true)
     @Column(unique = true,length = 200)
     private String email;
 
