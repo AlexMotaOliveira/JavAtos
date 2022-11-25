@@ -23,6 +23,7 @@ import java.util.List;
 @EnableSwagger2
 @Import(BeanValidatorPluginsConfiguration.class)
 public class SwaggerConfig {
+// TODO alteração
 
 
     @Bean
