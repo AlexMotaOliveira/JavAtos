@@ -21,12 +21,12 @@ public class NotaController {
             @ApiResponse(code = 201, message = "criado"),
             @ApiResponse(code = 500, message = "falha ao conectar com o banco de dados")
     })
-    public Nota salvar(@RequestBody Nota nota){
+    public Nota salvar(@RequestBody Nota nota) {
         return notaService.salvar(nota);
     }
 
     @GetMapping
-    public List<Nota> listarTodos(){
+    public List<Nota> listarTodos() {
         return notaService.listarTodos();
     }
 
