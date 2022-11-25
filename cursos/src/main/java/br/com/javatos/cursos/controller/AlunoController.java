@@ -2,6 +2,7 @@ package br.com.javatos.cursos.controller;
 
 import br.com.javatos.cursos.model.Aluno;
 import br.com.javatos.cursos.service.AlunoService;
+import com.fasterxml.jackson.databind.deser.std.StringArrayDeserializer;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -44,4 +45,5 @@ public class AlunoController {
     public Aluno alterar(@RequestBody Aluno aluno){
         return alunoService.alterar(aluno);
     }
+
 }

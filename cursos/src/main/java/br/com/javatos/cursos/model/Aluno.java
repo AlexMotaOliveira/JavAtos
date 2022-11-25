@@ -27,6 +27,8 @@ public class Aluno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    private String testeHenriqueBolnaldo;
+
     @ApiModelProperty(example = "Alex Mota")
     @NotNull
     @Size(min = 2, max = 50)
