@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -44,4 +45,8 @@ public class AlunoService {
 
         return alunoRepository.save(alunoEntity);
     }
+
+   public void deletar(long id){
+        //TODO criar metodo de deletar aluno
+   }
 }
