@@ -19,4 +19,6 @@ public class Nota {
     @ManyToMany
     private List<Disciplina> disciplinas; // Composição
 
+    //Augusto passou por aqui
+
 }
