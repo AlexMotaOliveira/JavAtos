@@ -1,16 +1,14 @@
 package br.com.javatos.cursos.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
-import springfox.documentation.annotations.ApiIgnore;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -20,7 +18,7 @@ import java.util.List;
 @Entity
 @ApiModel(value = "AlunoCDF", description = "classe modelo para um Aluno")
 //@ApiIgnore
-@Builder
+@NoArgsConstructor
 public class Aluno {
 
     @Id
