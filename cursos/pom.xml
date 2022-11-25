@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>br.com.javatos</groupId>
 	<artifactId>cursos</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>cadastro</name>
 	<description>Cadastro de alunos e cursos</description>
 	<properties>
