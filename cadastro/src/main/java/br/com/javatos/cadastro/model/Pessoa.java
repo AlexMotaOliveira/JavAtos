@@ -28,12 +28,12 @@ public class Pessoa {
     private long id;
 
     @Column(name = "v_nome_completo", length = 300, nullable = false)
-    @NotBlank(message = "campo não pode ser nulo")
+    @NotBlank(message = "Campo não pode ser nulo")
     @Size(min = 2, max = 300, message = "nome invalido")
     private String nome;
 
     @Column(name = "v_email", length = 200, nullable = false, unique = true)
-    @Email(message = "email informado invalido")
+    @Email(message = "Email informado invalido")
     private String email;
 
     @Column(name = "v_cpf", length = 11, nullable = false, unique = true)
