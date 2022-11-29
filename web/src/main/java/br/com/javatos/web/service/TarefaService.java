@@ -20,4 +20,8 @@ public class TarefaService {
     public List<Tarefa> listarTodos() {
         return tarefaRepository.findAll();
     }
+
+    public Tarefa buscar(long id) {
+        return tarefaRepository.findById(id).orElse(null);
+    }
 }

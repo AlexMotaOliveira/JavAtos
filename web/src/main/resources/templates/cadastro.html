@@ -7,17 +7,19 @@
 
 <body>
 
-    <h1 th:text="${cadastro}"></h1>
+<h1 th:text="${cadastro}"></h1>
 
-    <form action="/tarefa" method="post" >
-        <label>Insira uma descrição</label>
-        <input type="text" name="descricao"  value="criar uma pagina home"></br>
+<form action="/tarefa" method="post" th:objetc="${tarefa}">
+    <input type="hidden" name="id" th:value="${tarefa ==null} ? null : ${tarefa.id} ">
+    <label>Insira uma descrição</label>
+    <input type="text" name="descricao" placeholder="digite uma descrição"
+           th:value="${tarefa ==null} ? null : ${tarefa.descricao}"/></br>
 
-        <label>Insira um prazo</label>
-        <input type="date" name="data" ></br>
-
-        <input type="submit" value="cadastrar"/>
-    </form>
+    <label>Insira um prazo</label>
+    <input type="date" name="prazo"
+           th:value="${tarefa ==null} ? null : ${tarefa.prazo}"></br>
+    <input type="submit" value="cadastrar"/>
+</form>
 
 </body>
 </html>

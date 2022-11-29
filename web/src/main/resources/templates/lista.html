@@ -7,5 +7,25 @@
 
 <body>
 
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Descrição</th>
+        <th>Prazo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="tarefa : ${tarefas}">
+        <td th:text="${tarefa.id}"></td>
+        <td th:text="${tarefa.descricao}"></td>
+        <td th:text="${tarefa.prazo}"></td>
+        <td>
+            <a th:href="'/tarefa/' +${tarefa.id}"> editar</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
 </body>
 </html>
