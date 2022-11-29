@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+</head>
+
+<body>
+
+    <h1 th:text="${cadastro}"></h1>
+
+    <form action="/tarefa" method="post" >
+        <label>Insira uma descrição</label>
+        <input type="text" name="descricao"  value="criar uma pagina home"></br>
+
+        <label>Insira um prazo</label>
+        <input type="date" name="data" ></br>
+
+        <input type="submit" value="cadastrar"/>
+    </form>
+
+</body>
+</html>
