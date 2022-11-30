@@ -45,16 +45,13 @@
         <td th:text="${{tarefa.dataInicial}}"></td>
         <td th:text="${{tarefa.prazo}}"></td>
         <td>
-            <form th:action="/tarefa/" method="get">
-                <input type="hidden" name="id" th:value="${tarefa.id}"/>
+            <form th:action="'/tarefa/' +${tarefa.id}" method="get">
                 <input type="submit" value="Alterar" class="btn btn-warning"/>
             </form>
-            <form th:action="/tarefa/listar/" method="post">
-                <input type="hidden" name="id" th:value="${tarefa.id}"/>
+            <form th:action="'/tarefa/listar/' +${tarefa.id}" method="post">
                 <input type="submit" value="Excluir" class="btn btn-danger"/>
             </form>
         </td>
-
     </tr>
     </tbody>
 </table>

@@ -49,8 +49,8 @@ public class TarefaController {
         return view;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/tarefa/listar/")
-    public String excluir(@RequestParam Long id){
+    @RequestMapping(method = RequestMethod.POST, value = "/tarefa/listar/{id}")
+    public String excluir(@PathVariable Long id){
         tarefaService.excluir(id);
         return "redirect:/tarefa/listar"; // passar uma URI
     }
