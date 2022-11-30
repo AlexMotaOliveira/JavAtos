@@ -7,9 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -51,4 +49,9 @@ public class TarefaController {
         return view;
     }
 
+    @RequestMapping(method = RequestMethod.POST, value = "/tarefa/listar/")
+    public String excluir(@RequestParam Long id){
+        tarefaService.excluir(id);
+        return "redirect:/tarefa/listar"; // passar uma URI
+    }
 }

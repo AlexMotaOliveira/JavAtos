@@ -1,13 +1,13 @@
 package br.com.javatos.web.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedBy;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -18,8 +18,12 @@ public class Tarefa {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; //null   primitivo= 0
     private String descricao;
-    private String prazo;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date prazo;
 
     @CreationTimestamp
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Column(updatable = false)
     private Date dataInicial;
 }

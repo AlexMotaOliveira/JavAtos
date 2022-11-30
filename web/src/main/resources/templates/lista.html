@@ -3,26 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>Listagem de Tarefas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/meucss.css">
 </head>
+<header>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/tarefa">Cadastro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tarefa/listar">Lista de tarefas</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
 
 <body>
-
-<table>
+<table class="table table-striped">
     <thead>
-    <tr>
+    <tr class="table-dark">
         <th>Id</th>
         <th>Descrição</th>
+        <th>Inicio</th>
         <th>Prazo</th>
+        <th>#</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="tarefa : ${tarefas}">
         <td th:text="${tarefa.id}"></td>
         <td th:text="${tarefa.descricao}"></td>
-        <td th:text="${tarefa.prazo}"></td>
+        <td th:text="${{tarefa.dataInicial}}"></td>
+        <td th:text="${{tarefa.prazo}}"></td>
         <td>
-            <a th:href="'/tarefa/' +${tarefa.id}"> editar</a>
+            <form th:action="/tarefa/" method="get">
+                <input type="hidden" name="id" th:value="${tarefa.id}"/>
+                <input type="submit" value="Alterar" class="btn btn-warning"/>
+            </form>
+            <form th:action="/tarefa/listar/" method="post">
+                <input type="hidden" name="id" th:value="${tarefa.id}"/>
+                <input type="submit" value="Excluir" class="btn btn-danger"/>
+            </form>
         </td>
+
     </tr>
     </tbody>
 </table>

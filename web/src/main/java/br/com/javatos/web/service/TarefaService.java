@@ -24,4 +24,8 @@ public class TarefaService {
     public Tarefa buscar(long id) {
         return tarefaRepository.findById(id).orElse(null);
     }
+
+    public void excluir(Long id) {
+        tarefaRepository.deleteById(id);
+    }
 }
