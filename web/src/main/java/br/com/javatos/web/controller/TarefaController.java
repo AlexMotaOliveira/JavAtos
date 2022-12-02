@@ -3,13 +3,15 @@ package br.com.javatos.web.controller;
 import br.com.javatos.web.model.Tarefa;
 import br.com.javatos.web.service.TarefaService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.ObjectUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -26,7 +28,10 @@ public class TarefaController {
     }
 
     @PostMapping("/tarefa")
-    public String cadastrar(Tarefa tarefa) {
+    public String cadastrar(@Valid Tarefa tarefa, BindingResult result) {
+        if (result.hasErrors()) {
+            return "cadastro";
+        }
         tarefaService.salvar(tarefa);
         return "redirect:/tarefa/listar"; // passar uma URI
     }
@@ -49,8 +54,9 @@ public class TarefaController {
         return view;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/tarefa/listar/{id}")
-    public String excluir(@PathVariable Long id){
+
+    @RequestMapping(method = {RequestMethod.POST, RequestMethod.DELETE}, value = "/tarefa/excluir")
+    public String excluir(Long id) {
         tarefaService.excluir(id);
         return "redirect:/tarefa/listar"; // passar uma URI
     }

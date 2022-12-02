@@ -27,7 +27,7 @@
     </nav>
 </header>
 
-<body>
+<body id="espaco">
 <table class="table table-striped">
     <thead>
     <tr class="table-dark">
@@ -46,10 +46,12 @@
         <td th:text="${{tarefa.prazo}}"></td>
         <td>
             <form th:action="'/tarefa/' +${tarefa.id}" method="get">
-                <input type="submit" value="Alterar" class="btn btn-warning"/>
+                <input type="submit" value="alterar" class="btn btn-warning"/>
             </form>
-            <form th:action="'/tarefa/listar/' +${tarefa.id}" method="post">
-                <input type="submit" value="Excluir" class="btn btn-danger"/>
+            <form th:action="'/tarefa/excluir'" method="post">
+                <input type="hidden"  name="_method" value="delete">
+                <input type="hidden"  name="id" th:value="${tarefa.id}">
+                <input type="submit" value="excluir" class="btn btn-danger"/>
             </form>
         </td>
     </tr>

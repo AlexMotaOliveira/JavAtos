@@ -26,14 +26,17 @@
         </div>
     </nav>
 </header>
-<body>
-<form action="/tarefa" method="post" th:objetc="${tarefa}">
+<body id="espaco">
+<form th:action="'/tarefa'" method="post" th:objetc="${tarefa}">
     <input type="hidden" name="id" th:value="${tarefa ==null} ? null : ${tarefa.id} ">
     <div class="mb-3">
         <label  class="form-label">Descrição</label>
         <input type="text" class="form-control"
                name="descricao" th:value="*{tarefa ==null} ? null : ${tarefa.descricao}">
         <div class="form-text">Descreva uma tarefa para ser executada</div>
+        <ul>
+            <li th:each="err : ${#fields.errors('*')}" th:text="${err}" class="error" />
+        </ul>
     </div>
     <div class="mb-3">
         <label class="form-label">Prazo</label>
