@@ -10,12 +10,14 @@
         <module name="cursos" />
         <module name="teste" />
         <module name="cadastro" />
+        <module name="web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="cadastro" target="11" />
       <module name="cursos" target="11" />
       <module name="teste" target="9" />
+      <module name="web" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -23,6 +25,7 @@
       <module name="cadastro" options="-parameters" />
       <module name="cursos" options="-parameters" />
       <module name="teste" options="-parameters" />
+      <module name="web" options="-parameters" />
     </option>
   </component>
 </project>

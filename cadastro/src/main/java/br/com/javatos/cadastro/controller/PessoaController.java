@@ -49,6 +49,7 @@ public class PessoaController {
     public void apagar(@PathVariable Long id) {
         log.warn("excluindo uma pessoa");
         pessoaService.apagar(id);
+        log.warn("pessoa excluida");
     }
 
     @DeleteMapping("/cpf/{cpf}")

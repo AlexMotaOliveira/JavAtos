@@ -6,8 +6,12 @@
         <option value="$PROJECT_DIR$/cadastro/pom.xml" />
         <option value="$PROJECT_DIR$/teste/teste/pom.xml" />
         <option value="$PROJECT_DIR$/cursos/pom.xml" />
+        <option value="$PROJECT_DIR$/web/pom.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_14" default="true" project-jdk-name="14" project-jdk-type="JavaSDK" />
+  <component name="ProjectType">
+    <option name="id" value="jpab" />
+  </component>
 </project>
