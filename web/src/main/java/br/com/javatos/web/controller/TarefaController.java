@@ -22,13 +22,13 @@ public class TarefaController {
     @GetMapping("/tarefa")
     public String abrirPagina(ModelMap modelMap) {
         modelMap.addAttribute("tarefa", new Tarefa());
-        return "tarefa/cadastro";
+        return "tarefa/cadastro-tarefa";
     }
 
     @PostMapping("/tarefa")
     public String cadastrar(@Valid Tarefa tarefa, BindingResult result) {
         if (result.hasErrors()) {
-            return "tarefa/cadastro";
+            return "tarefa/cadastro-tarefa";
         }
         tarefaService.salvar(tarefa);
         return "redirect:/tarefa/listar"; // passar uma URI
@@ -40,12 +40,12 @@ public class TarefaController {
     public String listarTarefas(Model model) {
         List<Tarefa> tarefaList = tarefaService.listarTodos();
         model.addAttribute("tarefas", tarefaList);
-        return "tarefa/lista";
+        return "tarefa/lista-tarefa";
     }
 
     @GetMapping("/tarefa/{id}")
     public ModelAndView alterar(@PathVariable long id) {
-        ModelAndView view = new ModelAndView("tarefa/cadastro");
+        ModelAndView view = new ModelAndView("tarefa/cadastro-tarefa");
 
         Tarefa tarefa = tarefaService.buscar(id);
         view.addObject(tarefa);

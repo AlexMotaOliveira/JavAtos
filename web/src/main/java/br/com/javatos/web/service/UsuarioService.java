@@ -6,6 +6,8 @@ import br.com.javatos.web.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UsuarioService {
@@ -16,4 +18,15 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
     }
 
+    public List<Usuario> buscarTodos() {
+        return usuarioRepository.findAll();
+    }
+
+    public void excluir(Long id) {
+        usuarioRepository.deleteById(id);
+    }
+
+    public Usuario buscar(Long id) {
+        return usuarioRepository.findById(id).orElse(null);
+    }
 }

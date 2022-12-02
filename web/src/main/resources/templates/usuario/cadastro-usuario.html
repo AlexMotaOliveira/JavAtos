@@ -19,10 +19,13 @@
                         <a class="nav-link active" aria-current="page" href="/usuario">Cadastrar usuario</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/usuario/listar">Lista de usuarios</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/tarefa">Cadastrar tarefa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/tarefa/listar">Lista de usuarios</a>
+                        <a class="nav-link" href="/tarefa/listar">Listar tarefas</a>
                     </li>
                 </ul>
             </div>
@@ -33,44 +36,41 @@
 <form th:action="'/usuario'" method="post" th:objetc="${usuario}">
     <input type="hidden" name="id" th:value="${usuario ==null} ? null : ${usuario.id} ">
     <div class="mb-3">
-        <label  class="form-label">Nome</label>
+        <label class="form-label">Nome</label>
         <input type="text" class="form-control"
                name="nome" th:value="*{usuario ==null} ? null : ${usuario.nome}"
-        placeholder="insira seu nome completo">
+               placeholder="insira seu nome completo">
         <ul class="error">
-            <li th:each="err : ${#fields.errors('usuario.nome')}" th:text="${err}" />
+            <li th:each="err : ${#fields.errors('usuario.nome')}" th:text="${err}"/>
         </ul>
     </div>
     <div class="mb-3">
-        <label  class="form-label">CPF</label>
+        <label class="form-label">CPF</label>
         <input type="text" class="form-control"
                name="cpf" th:value="*{usuario ==null} ? null : ${usuario.cpf}"
                placeholder="12332114589">
         <ul class="error">
-            <li th:each="err : ${#fields.errors('usuario.cpf')}" th:text="${err}" />
+            <li th:each="err : ${#fields.errors('usuario.cpf')}" th:text="${err}"/>
         </ul>
     </div>
     <div class="mb-3">
-        <label  class="form-label">Email</label>
+        <label class="form-label">Email</label>
         <input type="email" class="form-control"
                name="email" th:value="*{usuario ==null} ? null : ${usuario.email}"
                placeholder="fulano.de.tal@email.com.br">
         <ul class="error">
-            <li th:each="err : ${#fields.errors('usuario.email')}" th:text="${err}" />
+            <li th:each="err : ${#fields.errors('usuario.email')}" th:text="${err}"/>
         </ul>
     </div>
     <div class="mb-3">
-        <label  class="form-label">Senha</label>
-        <input type="text" class="form-control"
+        <label class="form-label">Senha</label>
+        <input type="password" class="form-control"
                name="senha" th:value="*{usuario ==null} ? null : ${usuario.senha}"
                placeholder="insira uma senha">
         <ul class="error">
-            <li th:each="err : ${#fields.errors('usuario.senha')}" th:text="${err}" />
+            <li th:each="err : ${#fields.errors('usuario.senha')}" th:text="${err}"/>
         </ul>
     </div>
-
-
-
     <button type="submit" class="btn btn-secondary">cadastrar</button>
 </form>
 </body>

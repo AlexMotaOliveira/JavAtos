@@ -16,14 +16,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/usuario">Cadastrar usuario</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/usuario/listar">Lista de usuarios</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/tarefa">Cadastrar tarefa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/tarefa/listar">Lista de usuarios</a>
+                        <a class="nav-link" href="/tarefa/listar">Listar tarefas</a>
                     </li>
                 </ul>
             </div>
@@ -53,8 +55,8 @@
                 <input type="submit" value="alterar" class="btn btn-warning"/>
             </form>
             <form th:action="'/tarefa/excluir'" method="post">
-                <input type="hidden"  name="_method" value="delete">
-                <input type="hidden"  name="id" th:value="${tarefa.id}">
+                <input type="hidden" name="_method" value="delete">
+                <input type="hidden" name="id" th:value="${tarefa.id}">
                 <input type="submit" value="excluir" class="btn btn-danger"/>
             </form>
         </td>
