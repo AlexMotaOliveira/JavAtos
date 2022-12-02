@@ -16,10 +16,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/tarefa">Cadastro</a>
+                        <a class="nav-link active" aria-current="page" href="/usuario">Cadastrar usuario</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/tarefa/listar">Lista de tarefas</a>
+                        <a class="nav-link" href="/tarefa">Cadastrar tarefa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tarefa/listar">Lista de usuarios</a>
                     </li>
                 </ul>
             </div>
@@ -34,8 +37,8 @@
         <input type="text" class="form-control"
                name="descricao" th:value="*{tarefa ==null} ? null : ${tarefa.descricao}">
         <div class="form-text">Descreva uma tarefa para ser executada</div>
-        <ul>
-            <li th:each="err : ${#fields.errors('*')}" th:text="${err}" class="error" />
+        <ul class="error">
+            <li th:each="err : ${#fields.errors('tarefa.descricao')}" th:text="${err}" />
         </ul>
     </div>
     <div class="mb-3">
@@ -43,8 +46,10 @@
         <input type="date" class="form-control" name="prazo"
                th:value="*{tarefa ==null} ? null : ${{tarefa.prazo}}">
     </div>
+    <ul class="error">
+        <li th:each="err : ${#fields.errors('tarefa.prazo')}" th:text="${err}" />
+    </ul>
     <button type="submit" class="btn btn-secondary">cadastrar</button>
 </form>
-
 </body>
 </html>

@@ -3,7 +3,6 @@ package br.com.javatos.web.controller;
 import br.com.javatos.web.model.Tarefa;
 import br.com.javatos.web.service.TarefaService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -22,15 +21,14 @@ public class TarefaController {
 
     @GetMapping("/tarefa")
     public String abrirPagina(ModelMap modelMap) {
-        modelMap.addAttribute("cadastro", "pagina de cadastro");
         modelMap.addAttribute("tarefa", new Tarefa());
-        return "cadastro";
+        return "tarefa/cadastro";
     }
 
     @PostMapping("/tarefa")
     public String cadastrar(@Valid Tarefa tarefa, BindingResult result) {
         if (result.hasErrors()) {
-            return "cadastro";
+            return "tarefa/cadastro";
         }
         tarefaService.salvar(tarefa);
         return "redirect:/tarefa/listar"; // passar uma URI
@@ -42,12 +40,12 @@ public class TarefaController {
     public String listarTarefas(Model model) {
         List<Tarefa> tarefaList = tarefaService.listarTodos();
         model.addAttribute("tarefas", tarefaList);
-        return "lista";
+        return "tarefa/lista";
     }
 
     @GetMapping("/tarefa/{id}")
     public ModelAndView alterar(@PathVariable long id) {
-        ModelAndView view = new ModelAndView("cadastro");
+        ModelAndView view = new ModelAndView("tarefa/cadastro");
 
         Tarefa tarefa = tarefaService.buscar(id);
         view.addObject(tarefa);
