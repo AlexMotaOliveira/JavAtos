@@ -34,8 +34,8 @@ public class Usuario {
     private String cpf;
 
     @NotBlank(message = "senha não pode ser nula")
-    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\\w\\s]).{8,}$",
-            message = "min 8, max 20, uma minsuacula, uma maiscula, um numero, um caracter especial")
+//    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\\w\\s]).{8,}$",
+//            message = "min 8, max 20, uma minsuacula, uma maiscula, um numero, um caracter especial")
     @Column(length = 20, nullable = false)
     @Size(min = 8, max = 20)
     private String senha;

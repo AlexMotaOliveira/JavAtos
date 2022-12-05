@@ -53,12 +53,12 @@
         <td th:text="${usuario.email}"></td>
         <td th:text="${usuario.cpf}"></td>
         <td th:text="${usuario.senha}"></td>
-        <td>
+        <td sec:authorize="hasRole('ADMIN')">
             <form th:action="'/usuario/' +${usuario.id}" method="get">
                 <input type="submit" value="alterar" class="btn btn-warning"/>
             </form>
         </td>
-        <td>
+        <td sec:authorize="hasRole('ADMIN')">
             <form th:action="'/usuario/excluir'" method="post">
                 <input type="hidden" name="_method" value="delete">
                 <input type="hidden" name="id" th:value="${usuario.id}">

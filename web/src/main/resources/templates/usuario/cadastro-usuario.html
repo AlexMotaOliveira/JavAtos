@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Cadastro</title>
@@ -73,5 +74,17 @@
     </div>
     <button type="submit" class="btn btn-secondary">cadastrar</button>
 </form>
+
+<br>
+<div sec:authorize="hasRole('OUTROS')">Visivel se ele for um usuario</div>
+<div sec:authorize="hasRole('ADMIN')">Visivel se ele for um Adminitrador</div>
+<div sec:authorize="hasAnyRole('ADMIN','USER')">Visivel os dois perfis user e admin</div>
+<div sec:authorize="isAuthenticated()">
+    Text visible only to authenticated users.
+</div>
+Authenticated username:
+<div sec:authentication="name"></div>
+Authenticated user roles:
+<div sec:authentication="principal.authorities"></div>
 </body>
 </html>

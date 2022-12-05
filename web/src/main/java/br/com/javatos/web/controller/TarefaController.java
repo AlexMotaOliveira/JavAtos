@@ -34,9 +34,7 @@ public class TarefaController {
         return "redirect:/tarefa/listar"; // passar uma URI
     }
 
-    @GetMapping({
-            "/tarefa/listar", "/"
-    })
+    @RequestMapping(method = {RequestMethod.POST, RequestMethod.GET}, value = {"/tarefa/listar", "/"})
     public String listarTarefas(Model model) {
         List<Tarefa> tarefaList = tarefaService.listarTodos();
         model.addAttribute("tarefas", tarefaList);
