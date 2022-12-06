@@ -1,5 +1,9 @@
 package br.com.javatos.web.security;
 
+import br.com.javatos.web.model.Usuario;
+import br.com.javatos.web.repository.UsuarioRepository;
+import br.com.javatos.web.security.login.UserLogin;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +16,10 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfiguration {
+
+    private final UsuarioRepository usuarioRepository;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -38,14 +45,19 @@ public class SecurityConfiguration {
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth, PasswordEncoder passwordEncoder) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("a@a")
-                .password(passwordEncoder.encode("123456"))
-                .roles("OUTRO")
-                .and()
-                .withUser("admin@admin")
-                .password(passwordEncoder.encode("admin"))
-                .roles("ADMIN");
+//        auth.inMemoryAuthentication()
+//                .withUser("a@a")
+//                .password(passwordEncoder.encode("123456"))
+//                .roles("OUTRO")
+//                .and()
+//                .withUser("admin@admin")
+//                .password(passwordEncoder.encode("admin"))
+//                .roles("ADMIN");
+
+
+        auth
+                .userDetailsService(email ->
+                        new UserLogin(usuarioRepository.findByEmail(email)));
 
     }
 }

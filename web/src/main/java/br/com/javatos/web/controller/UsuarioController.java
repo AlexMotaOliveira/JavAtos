@@ -1,8 +1,11 @@
 package br.com.javatos.web.controller;
 
+import br.com.javatos.web.model.Role;
+import br.com.javatos.web.model.Roles;
 import br.com.javatos.web.model.Usuario;
 import br.com.javatos.web.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -18,6 +21,7 @@ import java.util.List;
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
+    private final PasswordEncoder passwordEncoder;
 
     @GetMapping
     public String abrirPagina(ModelMap modelMap) {
@@ -30,6 +34,9 @@ public class UsuarioController {
         if (result.hasErrors()) {
             return "usuario/cadastro-usuario";
         }
+        String senhaCriptrografada = passwordEncoder.encode(usuario.getSenha());
+        usuario.setSenha(senhaCriptrografada);
+        usuario.getRoles().add(new Roles(1L, Role.USER));
         usuarioService.salvar(usuario);
         return "redirect:/tarefa"; // passar uma URI
     }

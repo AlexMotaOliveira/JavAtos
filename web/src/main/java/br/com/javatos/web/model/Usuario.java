@@ -1,6 +1,7 @@
 package br.com.javatos.web.model;
 
 import lombok.Data;
+import org.apache.catalina.LifecycleState;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
@@ -8,6 +9,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -36,8 +39,10 @@ public class Usuario {
     @NotBlank(message = "senha não pode ser nula")
 //    @Pattern(regexp = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\\w\\s]).{8,}$",
 //            message = "min 8, max 20, uma minsuacula, uma maiscula, um numero, um caracter especial")
-    @Column(length = 20, nullable = false)
-    @Size(min = 8, max = 20)
+    @Column(length = 100, nullable = false)
     private String senha;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    private List<Roles> roles = new ArrayList<>();
 
 }
