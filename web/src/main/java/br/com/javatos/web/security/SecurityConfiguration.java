@@ -1,6 +1,5 @@
 package br.com.javatos.web.security;
 
-import br.com.javatos.web.model.Usuario;
 import br.com.javatos.web.repository.UsuarioRepository;
 import br.com.javatos.web.security.login.UserLogin;
 import lombok.RequiredArgsConstructor;
@@ -53,11 +52,8 @@ public class SecurityConfiguration {
 //                .withUser("admin@admin")
 //                .password(passwordEncoder.encode("admin"))
 //                .roles("ADMIN");
-
-
         auth
                 .userDetailsService(email ->
                         new UserLogin(usuarioRepository.findByEmail(email)));
-
     }
 }

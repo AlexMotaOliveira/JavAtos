@@ -36,10 +36,12 @@ public class UsuarioController {
         }
         String senhaCriptrografada = passwordEncoder.encode(usuario.getSenha());
         usuario.setSenha(senhaCriptrografada);
-        usuario.getRoles().add(new Roles(1L, Role.USER));
+        usuario.getRoles().add(new Roles(2L, Role.ADMIN));
         usuarioService.salvar(usuario);
         return "redirect:/tarefa"; // passar uma URI
     }
+
+    //$2a$10$SN0Ivp1SlcrHvLcSUcIejugiyPYH6JJipFUHk7vd69CVZ128PVY/O
 
     @GetMapping("/listar")
     public String buscarTodos(Model model) {

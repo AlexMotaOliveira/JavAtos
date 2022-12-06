@@ -2,6 +2,7 @@ package br.com.javatos.web.model;
 
 public enum Role {
 
-    USER,
-    ADMIN
+    ROLE_USER, // 0
+    ADMIN, // 1
+    SUPERVISOR // 2
 }

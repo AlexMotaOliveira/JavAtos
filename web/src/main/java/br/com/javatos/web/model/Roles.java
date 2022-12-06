@@ -20,10 +20,11 @@ public class Roles implements GrantedAuthority {
     private Long id;
 
     @Column(updatable = false)
+    @Enumerated(EnumType.ORDINAL)
     private Role role;
 
     @Override
     public String getAuthority() {
-        return role.toString();
+        return "ROLE_" + role.toString();
     }
 }

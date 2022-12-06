@@ -43,6 +43,7 @@ public class Usuario {
     private String senha;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn
     private List<Roles> roles = new ArrayList<>();
 
 }
