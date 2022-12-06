@@ -46,5 +46,6 @@ public class SecurityConfiguration {
                 .withUser("admin@admin")
                 .password(passwordEncoder.encode("admin"))
                 .roles("ADMIN");
+
     }
 }
