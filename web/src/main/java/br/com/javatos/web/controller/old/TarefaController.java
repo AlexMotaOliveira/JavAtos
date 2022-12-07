@@ -1,4 +1,4 @@
-package br.com.javatos.web.controller;
+package br.com.javatos.web.controller.old;
 
 import br.com.javatos.web.model.Tarefa;
 import br.com.javatos.web.service.TarefaService;
@@ -22,7 +22,7 @@ public class TarefaController {
     @GetMapping("/tarefa")
     public String abrirPagina(ModelMap modelMap) {
         modelMap.addAttribute("tarefa", new Tarefa());
-        return "tarefa/cadastro-tarefa";
+        return "tables";
     }
 
     @PostMapping("/tarefa")
@@ -34,11 +34,11 @@ public class TarefaController {
         return "redirect:/tarefa/listar"; // passar uma URI
     }
 
-    @RequestMapping(method = {RequestMethod.POST, RequestMethod.GET}, value = {"/tarefa/listar", "/"})
+    @RequestMapping(method = {RequestMethod.POST, RequestMethod.GET}, value = {"/tarefa/listar"})
     public String listarTarefas(Model model) {
         List<Tarefa> tarefaList = tarefaService.listarTodos();
         model.addAttribute("tarefas", tarefaList);
-        return "tarefa/lista-tarefa";
+        return "tables";
     }
 
     @GetMapping("/tarefa/{id}")

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{layout/topo :: cima('Login')}"/>
+<header th:replace="~{layout/menu :: opcoes}"/>
+
+<body id="espaco">
+<form th:action="@{/login}" method="post">
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input name="username" type="email" class="form-control" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Senha</label>
+        <input name="password" type="password" class="form-control">
+    </div>
+    <div th:if="*{mensagem != null}" class="error">
+        <span th:text="${mensagem}"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<div sec:authorize="isAuthenticated()">
+    Text visible only to authenticated users.
+</div>
+</body>
+</html>

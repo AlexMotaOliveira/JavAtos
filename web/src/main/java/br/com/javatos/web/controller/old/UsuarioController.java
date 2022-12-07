@@ -1,4 +1,4 @@
-package br.com.javatos.web.controller;
+package br.com.javatos.web.controller.old;
 
 import br.com.javatos.web.model.Role;
 import br.com.javatos.web.model.Roles;
@@ -26,13 +26,13 @@ public class UsuarioController {
     @GetMapping
     public String abrirPagina(ModelMap modelMap) {
         modelMap.addAttribute("usuario", new Usuario());
-        return "usuario/cadastro-usuario";
+        return "register";
     }
 
     @PostMapping
     public String cadastrar(@Valid Usuario usuario, BindingResult result) {
         if (result.hasErrors()) {
-            return "usuario/cadastro-usuario";
+            return "register";
         }
         String senhaCriptrografada = passwordEncoder.encode(usuario.getSenha());
         usuario.setSenha(senhaCriptrografada);
@@ -40,8 +40,6 @@ public class UsuarioController {
         usuarioService.salvar(usuario);
         return "redirect:/tarefa"; // passar uma URI
     }
-
-    //$2a$10$SN0Ivp1SlcrHvLcSUcIejugiyPYH6JJipFUHk7vd69CVZ128PVY/O
 
     @GetMapping("/listar")
     public String buscarTodos(Model model) {
@@ -60,6 +58,6 @@ public class UsuarioController {
     public String buscarTodos(@PathVariable Long id, Model model) {
         Usuario usuario = usuarioService.buscar(id);
         model.addAttribute("usuario", usuario);
-        return "usuario/cadastro-usuario";
+        return "register";
     }
 }

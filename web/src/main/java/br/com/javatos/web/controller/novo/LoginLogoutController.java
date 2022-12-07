@@ -1,4 +1,4 @@
-package br.com.javatos.web.controller;
+package br.com.javatos.web.controller.novo;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
