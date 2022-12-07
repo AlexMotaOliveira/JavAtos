@@ -22,7 +22,7 @@ public class TarefaController {
     @GetMapping("/tarefa")
     public String abrirPagina(ModelMap modelMap) {
         modelMap.addAttribute("tarefa", new Tarefa());
-        return "tables";
+        return "buttons";
     }
 
     @PostMapping("/tarefa")
