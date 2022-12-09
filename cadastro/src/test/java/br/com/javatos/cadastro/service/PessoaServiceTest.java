@@ -1,27 +1,26 @@
 package br.com.javatos.cadastro.service;
 
 
-import br.com.javatos.cadastro.exception.errors.DuplicacaoCadastroException;
 import br.com.javatos.cadastro.model.Endereco;
 import br.com.javatos.cadastro.model.Pessoa;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.Assert;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Date;
 
 @SpringBootTest
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class) // Junit 4
 public class PessoaServiceTest {
 
     @Autowired
     private PessoaService pessoaService;
 
-    @Test(expected = DuplicacaoCadastroException.class)
+    @Test
     public void salvarPessoaNoBancoDeDados() {
         Pessoa pessoa = new Pessoa();
+        pessoa.setNome("Alex");
         pessoa.setId(1L);
         pessoa.setCpf("12312312341");
         pessoa.setEmail("a@a");
@@ -30,11 +29,17 @@ public class PessoaServiceTest {
         pessoa.setDataDeNascimento(new Date());
 
         pessoa.setEndereco(endereco);
-        try {
 
-            pessoaService.salvar(pessoa);
-        }catch (DuplicacaoCadastroException e){
-            throw new DuplicacaoCadastroException("nok");
-        }
+//        assertThrows(DuplicacaoCadastroException.class,
+//                () -> pessoaService.salvar(pessoa));
+        Assert.assertNotNull(pessoaService.salvar(pessoa));
+    }
+
+    @Test
+    public void buscarPessoaPorCpf() {
+        String cpf = "12312312341";
+        Pessoa pessoa = pessoaService.buscarPorCpf(cpf).getBody();
+        Assert.assertTrue("cpf esta correto", pessoa.getCpf().equals(cpf));
+
     }
 }
