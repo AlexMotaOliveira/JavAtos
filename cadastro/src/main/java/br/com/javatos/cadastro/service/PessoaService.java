@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,6 +53,7 @@ public class PessoaService {
 
     public ResponseEntity<Pessoa> buscarPorCpf(String cpf) {
         try {
+
             Optional<Pessoa> pessoa = pessoaRepository.findByCpf(cpf);
             if (pessoa.isEmpty()) {
                 return ResponseEntity.notFound().build(); // status code 404

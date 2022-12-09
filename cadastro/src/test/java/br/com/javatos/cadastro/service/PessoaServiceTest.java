@@ -1,6 +1,7 @@
 package br.com.javatos.cadastro.service;
 
 
+import br.com.javatos.cadastro.exception.errors.DuplicacaoCadastroException;
 import br.com.javatos.cadastro.model.Endereco;
 import br.com.javatos.cadastro.model.Pessoa;
 import org.junit.Assert;
@@ -30,9 +31,8 @@ public class PessoaServiceTest {
 
         pessoa.setEndereco(endereco);
 
-//        assertThrows(DuplicacaoCadastroException.class,
-//                () -> pessoaService.salvar(pessoa));
-        Assert.assertNotNull(pessoaService.salvar(pessoa));
+        Assert.assertThrows(DuplicacaoCadastroException.class, () -> pessoaService.salvar(pessoa));
+//        Assert.assertNotNull(pessoaService.salvar(pessoa));
     }
 
     @Test
