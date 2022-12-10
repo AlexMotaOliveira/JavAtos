@@ -1,6 +1,8 @@
 package br.com.javatos.cadastro.controller;
 
+import br.com.javatos.cadastro.model.Endereco;
 import br.com.javatos.cadastro.model.Pessoa;
+import br.com.javatos.cadastro.repository.PessoaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -8,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
@@ -15,18 +19,20 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.Date;
 
 
 @Slf4j
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class PessoaControllerTest {
 
+    @LocalServerPort
+    private int port;
     private final MockMvc mockMvc;
     private final ObjectMapper mapper;
+    private final PessoaRepository pessoaRepository;
 
 
 //    @Test
@@ -96,11 +102,40 @@ public class PessoaControllerTest {
 
     @Test
     public void apagarPorIdPessoaControllerTesteStatus204() throws Exception {
+        Long id = 1L;
+        if (pessoaRepository != null && pessoaRepository.existsById(id)) {
+            MockHttpServletRequestBuilder resquestMetodo =
+                    MockMvcRequestBuilders.delete("/pessoa/{id}", "1");
+            MvcResult mvcResult = mockMvc.perform(resquestMetodo)
+                    .andDo(MockMvcResultHandlers.log())
+                    .andExpect(MockMvcResultMatchers.status().isNoContent())
+                    .andReturn();
+        }
+    }
+
+    @Test
+    public void salvarPessoaCotrollerTesteStatus201() throws Exception {
+        Endereco endereco = Endereco.builder().cep("03590-170").build();
+        Pessoa pessoa = Pessoa.builder()
+                .cpf("11850603081")
+                .email("a6234@alsief")
+                .nome("Alex MOta")
+                .endereco(endereco)
+                .dataDeNascimento(new Date())
+                .build();
+
+        String body = mapper.writeValueAsString(pessoa);
+
+        log.info("******** port: ", port);
         MockHttpServletRequestBuilder resquestMetodo =
-                MockMvcRequestBuilders.delete("/pessoa/{id}", "2");
-        MvcResult mvcResult = mockMvc.perform(resquestMetodo)
-                .andDo(MockMvcResultHandlers.log())
-                .andExpect(MockMvcResultMatchers.status().isNoContent())
+                MockMvcRequestBuilders.post("/pessoa")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("token", "verv4er6v4er654ver65ve")
+                        .content(body);
+        mockMvc.perform(resquestMetodo)
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isAccepted())
                 .andReturn();
+
     }
 }

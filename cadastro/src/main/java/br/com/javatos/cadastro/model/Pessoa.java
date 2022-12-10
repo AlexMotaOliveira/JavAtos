@@ -4,14 +4,15 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
+import javax.validation.Valid;
+import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.UUID;
 
@@ -21,6 +22,9 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @Table(name = "tb_Pessoa")
 @Data
 @JsonInclude(NON_NULL)
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Pessoa {
 
     @Id
@@ -57,6 +61,9 @@ public class Pessoa {
     //    @ManyToOne // N:1
     //    @ManyToMany// N:N
     //    @OneToOne  // 1:1
+
+    @Valid
+    @NotNull
     @Embedded
     Endereco endereco;
 
