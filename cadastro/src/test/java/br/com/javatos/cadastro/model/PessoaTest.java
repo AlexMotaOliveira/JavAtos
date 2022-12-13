@@ -1,8 +1,6 @@
 package br.com.javatos.cadastro.model;
 
-
-import br.com.javatos.cadastro.exception.errors.DuplicacaoCadastroException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.util.Assert;
 
 import static org.springframework.util.Assert.notNull;

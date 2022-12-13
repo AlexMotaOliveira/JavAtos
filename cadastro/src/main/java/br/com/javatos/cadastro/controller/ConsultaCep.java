@@ -1,5 +1,9 @@
 package br.com.javatos.cadastro.controller;
 
+import br.com.javatos.cadastro.config.ViaCepConfig;
+import br.com.javatos.cadastro.exception.errors.BadArgumentsException;
+import br.com.javatos.cadastro.exception.errors.InternalException;
+import br.com.javatos.cadastro.exception.errors.ResourceNotFoundException;
 import br.com.javatos.cadastro.model.Endereco;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -32,17 +36,26 @@ public class ConsultaCep {
     @GetMapping
     public List<Endereco> getListaDePessoa() {
         String url = "http://localhost:8092/pessoa";
-        List responseObject = new RestTemplate().getForObject(url, List.class);
-        return responseObject;
+        return new RestTemplate().getForObject(url, List.class);
     }
 
     public Endereco buscarCep(String cep) {
         String url = baseUrl.getUrl() + cep + "/json";
+        ;
         try {
-            return restTemplate.getForObject(url, Endereco.class);
-        }catch (RuntimeException e){
-
+            ResponseEntity<Endereco> responseEntity = restTemplate.getForEntity(url, Endereco.class);
+            if (responseEntity.getStatusCode().is2xxSuccessful()) {
+                return responseEntity.getBody();
+            }
+            throw new RuntimeException(responseEntity.getStatusCode().toString());
+        } catch (Exception e) {
+            if (e.getMessage().contains("400")) {
+                throw new BadArgumentsException(e.getMessage());
+            }
+            if (e.getMessage().contains("404")) {
+                throw new ResourceNotFoundException(e.getMessage());
+            }
+            throw new InternalException(e.getMessage());
         }
-        return null;
     }
 }

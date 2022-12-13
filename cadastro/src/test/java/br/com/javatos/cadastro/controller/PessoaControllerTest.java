@@ -12,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.cloud.contract.wiremock.AutoConfigureWireMock;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
@@ -27,6 +29,8 @@ import java.util.Date;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
+@ActiveProfiles("wiremock")
+@AutoConfigureWireMock(port = 0)
 public class PessoaControllerTest {
 
     @LocalServerPort
@@ -81,16 +85,16 @@ public class PessoaControllerTest {
         log.info("pessoa com o id: {}  > {}", id, pessoa);
 
         Assertions.assertEquals(1L, pessoa.getId());
-        Assertions.assertEquals("12312312345", pessoa.getCpf());
+        Assertions.assertEquals("12312312341", pessoa.getCpf());
     }
 
     @Test
     public void buscarPorCPFExistePessoaControllerTesteStatus200() throws Exception {
         MockHttpServletRequestBuilder resquestMetodo =
-                MockMvcRequestBuilders.get("/pessoa/cpf/{cpf}", "'12332132132'");
+                MockMvcRequestBuilders.get("/pessoa/cpf/{cpf}", "12332132132");
         MvcResult mvcResult = mockMvc.perform(resquestMetodo)
                 .andDo(MockMvcResultHandlers.log())
-                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andExpect(MockMvcResultMatchers.status().is4xxClientError())
                 .andReturn();
     }
 
@@ -119,7 +123,7 @@ public class PessoaControllerTest {
 
     @Test
     public void salvarPessoaCotrollerTesteStatus201() throws Exception {
-        Endereco endereco = Endereco.builder().cep("03590-170").build();
+        Endereco endereco = Endereco.builder().cep("00000202").build();
         Pessoa pessoa = Pessoa.builder()
                 .cpf("11850603081")
                 .email("a6234@alsief")

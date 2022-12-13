@@ -99,7 +99,7 @@ public class PessoaControllerTestMockito {
                 MockMvcRequestBuilders.get("/pessoa/cpf/{cpf}", "12332132132");
         MvcResult mvcResult = mockMvc.perform(resquestMetodo)
                 .andDo(MockMvcResultHandlers.log())
-                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andExpect(MockMvcResultMatchers.status().is2xxSuccessful())
                 .andReturn();
     }
 

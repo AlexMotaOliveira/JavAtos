@@ -1,4 +1,4 @@
-package br.com.javatos.cadastro.controller;
+package br.com.javatos.cadastro.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
