@@ -1,0 +1,58 @@
+{
+  "mappings" : [ {
+    "id" : "ebe61bce-fc85-452b-9ae3-1a793d0d4f38",
+    "name" : "ws_03590170_json",
+    "request" : {
+      "url" : "/ws/03590170/json",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 200,
+      "body" : "{\n  \"cep\": \"03590-170\",\n  \"logradouro\": \"Rua WireMock \",\n  \"complemento\": \"\",\n  \"bairro\": \"Conjunto Habitacional Padre Manoel da Nóbrega\",\n  \"localidade\": \"São Paulo\",\n  \"uf\": \"SP\",\n  \"ibge\": \"3550308\",\n  \"gia\": \"1004\",\n  \"ddd\": \"11\",\n  \"siafi\": \"7107\"\n}",
+      "headers" : {
+        "Server" : "nginx/1.22.0",
+        "Date" : "Sat, 10 Dec 2022 23:26:20 GMT",
+        "Content-Type" : "application/json; charset=utf-8",
+        "Expires" : "Sun, 11 Dec 2022 00:26:20 GMT",
+        "Cache-Control" : [ "max-age=3600", "public" ],
+        "Pragma" : "public",
+        "Access-Control-Allow-Origin" : "*",
+        "Access-Control-Allow-Methods" : "GET",
+        "Access-Control-Allow-Headers" : "Content-Type, X-Request-With, X-Requested-By",
+        "Access-Control-Allow-Credentials" : "true",
+        "Access-Control-Max-Age" : "86400"
+      }
+    },
+    "uuid" : "ebe61bce-fc85-452b-9ae3-1a793d0d4f38",
+    "persistent" : true
+  }, {
+    "id" : "855934a2-976b-4cfb-bd2d-fd7c72483175",
+    "name" : "ws_03590170_json",
+    "request" : {
+      "url" : "/ws/00000000/json",
+      "method" : "GET"
+    },
+    "response" : {
+      "status" : 400,
+      "body" : "{falha no servidor}",
+      "headers" : {
+        "Server" : "nginx/1.22.0",
+        "Date" : "Sat, 10 Dec 2022 23:01:33 GMT",
+        "Content-Type" : "application/json; charset=utf-8",
+        "Expires" : "Sun, 11 Dec 2022 00:01:33 GMT",
+        "Cache-Control" : [ "max-age=3600", "public" ],
+        "Pragma" : "public",
+        "Access-Control-Allow-Origin" : "*",
+        "Access-Control-Allow-Methods" : "GET",
+        "Access-Control-Allow-Headers" : "Content-Type, X-Request-With, X-Requested-By",
+        "Access-Control-Allow-Credentials" : "true",
+        "Access-Control-Max-Age" : "86400"
+      }
+    },
+    "uuid" : "855934a2-976b-4cfb-bd2d-fd7c72483175",
+    "persistent" : true
+  } ],
+  "meta" : {
+    "total" : 2
+  }
+}

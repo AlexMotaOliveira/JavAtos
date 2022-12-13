@@ -6,6 +6,7 @@ import br.com.javatos.cadastro.repository.PessoaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -78,6 +79,9 @@ public class PessoaControllerTest {
         String pessoaString = mvcResult.getResponse().getContentAsString();
         Pessoa pessoa = mapper.readValue(pessoaString, Pessoa.class);
         log.info("pessoa com o id: {}  > {}", id, pessoa);
+
+        Assertions.assertEquals(1L, pessoa.getId());
+        Assertions.assertEquals("12312312345", pessoa.getCpf());
     }
 
     @Test
