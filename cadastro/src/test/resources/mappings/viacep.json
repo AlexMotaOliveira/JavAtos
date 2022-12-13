@@ -7,7 +7,7 @@
       },
       "response": {
         "status": 200,
-        "body": "{\n  \"cep\": \"03590-170\",\n  \"logradouro\": \"Rua WireMock \",\n  \"complemento\": \"\",\n  \"bairro\": \"Conjunto Habitacional Padre Manoel da Nóbrega\",\n  \"localidade\": \"São Paulo\",\n  \"uf\": \"SP\",\n  \"ibge\": \"3550308\",\n  \"gia\": \"1004\",\n  \"ddd\": \"11\",\n  \"siafi\": \"7107\"\n}",
+        "body": "{\n  \"cep\": \"00000200\",\n  \"logradouro\": \"Rua WireMock \",\n  \"complemento\": \"\",\n  \"bairro\": \"Conjunto Habitacional Padre Manoel da Nóbrega\",\n  \"localidade\": \"São Paulo\",\n  \"uf\": \"SP\",\n  \"ibge\": \"3550308\",\n  \"gia\": \"1004\",\n  \"ddd\": \"11\",\n  \"siafi\": \"7107\"\n}",
         "headers": {
           "Server": "nginx/1.22.0",
           "Date": "Sat, 10 Dec 2022 23:26:20 GMT",
@@ -33,7 +33,7 @@
       },
       "response": {
         "status": 400,
-        "body": "{falha no servidor}",
+        "body": "{erro usuario}",
         "headers": {
           "Server": "nginx/1.22.0",
           "Date": "Sat, 10 Dec 2022 23:01:33 GMT",
@@ -103,8 +103,7 @@
           "Access-Control-Max-Age": "86400"
         }
       }
-    }
-  ,
+    },
     {
       "request": {
         "url": "/ws/00000202/json",
@@ -112,7 +111,7 @@
       },
       "response": {
         "status": 202,
-        "body": "{\n  \"cep\": \"03590-170\",\n  \"logradouro\": \"Rua WireMock \",\n  \"complemento\": \"\",\n  \"bairro\": \"Conjunto Habitacional Padre Manoel da Nóbrega\",\n  \"localidade\": \"São Paulo\",\n  \"uf\": \"SP\",\n  \"ibge\": \"3550308\",\n  \"gia\": \"1004\",\n  \"ddd\": \"11\",\n  \"siafi\": \"7107\"\n}",
+        "body": "{\n  \"cep\": \"00000202\",\n  \"logradouro\": \"Rua WireMock \",\n  \"complemento\": \"\",\n  \"bairro\": \"Conjunto Habitacional Padre Manoel da Nóbrega\",\n  \"localidade\": \"São Paulo\",\n  \"uf\": \"SP\",\n  \"ibge\": \"3550308\",\n  \"gia\": \"1004\",\n  \"ddd\": \"11\",\n  \"siafi\": \"7107\"\n}",
         "headers": {
           "Server": "nginx/1.22.0",
           "Date": "Sat, 10 Dec 2022 23:01:33 GMT",

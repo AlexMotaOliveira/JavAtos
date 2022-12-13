@@ -54,11 +54,6 @@ class PessoaControllerTestWireMock {
         this.pessoa = pessoa;
     }
 
-//    @AfterEach
-//    void setDown() {
-//        pessoaRepository.deleteAll();
-//    }
-
     @Test
     @DisplayName("salvar")
     @Order(4)

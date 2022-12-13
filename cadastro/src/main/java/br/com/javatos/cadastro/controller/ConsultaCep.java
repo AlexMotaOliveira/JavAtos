@@ -41,7 +41,6 @@ public class ConsultaCep {
 
     public Endereco buscarCep(String cep) {
         String url = baseUrl.getUrl() + cep + "/json";
-        ;
         try {
             ResponseEntity<Endereco> responseEntity = restTemplate.getForEntity(url, Endereco.class);
             if (responseEntity.getStatusCode().is2xxSuccessful()) {
