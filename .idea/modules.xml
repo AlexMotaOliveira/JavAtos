@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/cadastro/cadastro.iml" filepath="$PROJECT_DIR$/cadastro/cadastro.iml" />
       <module fileurl="file://$PROJECT_DIR$/cursos/cursos.iml" filepath="$PROJECT_DIR$/cursos/cursos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservicos/microservicos.iml" filepath="$PROJECT_DIR$/microservicos/microservicos.iml" />
       <module fileurl="file://$PROJECT_DIR$/teste/teste/teste.iml" filepath="$PROJECT_DIR$/teste/teste/teste.iml" />
       <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
     </modules>
