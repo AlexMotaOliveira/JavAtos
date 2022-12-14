@@ -9,12 +9,16 @@
         <outputRelativeToContentRoot value="true" />
         <module name="teste" />
         <module name="cursos" />
+        <module name="config-server" />
+        <module name="cadastro (1) (br.com.javatos.cadastro)" />
         <module name="cadastro" />
         <module name="web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="cadastro" target="11" />
+      <module name="cadastro (1) (br.com.javatos.cadastro)" target="11" />
+      <module name="config-server" target="11" />
       <module name="cursos" target="11" />
       <module name="teste" target="9" />
       <module name="web" target="11" />

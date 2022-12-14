@@ -4,6 +4,10 @@
     <file url="file://$PROJECT_DIR$/cadastro/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cursos/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/cursos/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservicos/cadastro/cadastro/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservicos/cadastro/cadastro/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservicos/config-server/config-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microservicos/config-server/config-server/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/teste/teste/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/web/src/main/java" charset="UTF-8" />
   </component>

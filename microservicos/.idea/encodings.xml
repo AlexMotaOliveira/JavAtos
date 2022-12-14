@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/auth/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/auth/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cadastro/cadastro/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cadastro/cadastro/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cadastro/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/cadastro/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config-server/config-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config-server/config-server/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/config-server/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ordem-servico/ordem-servico/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ordem-servico/ordem-servico/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ordem-servico/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ordem-servico/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-discovery/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service-discovery/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
