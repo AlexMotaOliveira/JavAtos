@@ -1,8 +1,6 @@
 
 s
 Ccadastro/src/main/java/br/com/javatos/cadastro/model/Categoria.java,9\7\979a8d7b488b03909cc068d4b995fb9d9a47f72c
-?
-gateway/pom.xml,4\b\4b316bc60d1cfae51045f6fc8e58a8ae31f03ff3
 ˆ
 X.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_validation_2_7_6.xml,1\8\189f9360c2ef5d71b1a472aa17ae26ef756aacd5
 j
@@ -53,5 +51,3 @@ k
 R.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_jdbc_2_7_6.xml,7\a\7a7c448dd6b13325fd702ff86e89f958e355497e
 †
 V.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_data_jpa_2_7_6.xml,a\5\a5a53967fbcd5210fb4989cee241d1f5fab29d97
-@
-cadastro/pom.xml,b\b\bbfb052d96eb04906f18950465116e788b24834f

@@ -9,3 +9,16 @@ spring:
     config:
       server:
         git: file://microservicos//config
+#  cloud:
+#    config:
+#      server:
+#        git:
+#          uri: https://github.com/AlexMotaOliveira/JavAtos/tree/master/microservicos/config
+#          skipSslValidation: true
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka
