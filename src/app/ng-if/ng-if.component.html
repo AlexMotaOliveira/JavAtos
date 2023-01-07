@@ -1,0 +1,10 @@
+<h3>ng-if works!</h3>
+
+<div *ngIf="!exibir">Ola NgIf</div>
+<div *ngIf="numero > 10">valor 10</div>
+<div *ngIf="lista.length > 1">valor lista</div>
+<div *ngIf="exibir">cpf 123123123-23</div>
+<div [hidden]="!exibir">cpf 123123123-23</div>
+
+<button (click)="isExibir()" >Logado</button>
+
