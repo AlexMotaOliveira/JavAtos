@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="mb-3">
+    <label class="form-label">Nome</label>
+    <!-- <input type="text" class="form-control" #inputNome> -->
+    <!-- <input type="text" class="form-control"  (input)="capturarNome($event)" value="{{nome}}"> -->
+    <input type="text" class="form-control" [(ngModel)]="nome" />
+    <br />
+    <div class="col-auto">
+      <button
+        type="submit"
+        class="btn btn-primary mb-3"
+        (click)="adicionarNome(nome)"
+      >
+        Adicionar
+      </button>
+    </div>
+    <br />
+    <p>{{ nome }}</p>
+  </div>
+
+  <div class="row">
+  <div class="card" style="width: 18rem; margin: 3px;" *ngFor="let pessoa of pessoas; let i = index">
+      <img src="https://randomuser.me/api/portraits/women/{{i}}.jpg" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{i}} : Nome</h5>
+        <p class="card-text">{{pessoa}}</p>
+      </div>
+    </div>
+  </div>
+</div>

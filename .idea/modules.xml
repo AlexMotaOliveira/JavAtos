@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cadastro/cadastro.iml" filepath="$PROJECT_DIR$/cadastro/cadastro.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservicos/cadastro/cadastro/cadastro (1) (br.com.javatos.cadastro).iml" filepath="$PROJECT_DIR$/microservicos/cadastro/cadastro/cadastro (1) (br.com.javatos.cadastro).iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservicos/config-server/config-server/config-server.iml" filepath="$PROJECT_DIR$/microservicos/config-server/config-server/config-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cursos/cursos.iml" filepath="$PROJECT_DIR$/cursos/cursos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/microservicos/microservicos.iml" filepath="$PROJECT_DIR$/microservicos/microservicos.iml" />
+      <module fileurl="file://$PROJECT_DIR$/teste/teste/teste.iml" filepath="$PROJECT_DIR$/teste/teste/teste.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
+    </modules>
+  </component>
+</project>
