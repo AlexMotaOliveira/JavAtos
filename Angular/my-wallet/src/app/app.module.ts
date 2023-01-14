@@ -9,6 +9,7 @@ import { SidebarModule } from 'primeng/sidebar';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { TableModule } from 'primeng/table';
 
 
 @NgModule({
@@ -23,7 +24,10 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     SidebarModule,
     ButtonModule,
     InputTextModule,
-    FormsModule
+    FormsModule,
+    TableModule
+
+
   ],
   providers: [],
   bootstrap: [AppComponent]
