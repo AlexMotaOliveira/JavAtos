@@ -1,38 +1,11 @@
-<app-sidebar></app-sidebar>
+<header>
+  <app-sidebar></app-sidebar>
+</header>
 <br />
 <br />
-<div class="grid">
-  <span class="p-input-icon-left col-9">
-    <i class="pi pi-search"></i>
-    <input class="col-9" type="text" pInputText [(ngModel)]="value1" placeholder="Search" />
-  </span>
-  <div class="col-12 div-input">
-    <input class="col-3 grid-input" type="date" pInputText [(ngModel)]="dataInicial" />
-    <input class="col-3" type="date" pInputText [(ngModel)]="dataFinal" />
-  </div>
-  <div class="col">
-    <button (click)="getData()"
-    pButton type="button" label="Search" icon="pi pi-search" iconPos="right" class="p-button-secondary grid-input" ></button>
-  </div>
-</div>
 
-<div class="card card-table">
-  <p-table [value]="products" [tableStyle]="{'min-width': '50rem'}">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Code</th>
-            <th>Name</th>
-            <th>Category</th>
-            <th>Quantity</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-product>
-        <tr>
-            <td>{{product.code}}</td>
-            <td>{{product.name}}</td>
-            <td>{{product.category}}</td>
-            <td>{{product.quantity}}</td>
-        </tr>
-    </ng-template>
-  </p-table>
-  </div>
+<router-outlet></router-outlet>
+
+
+<footer></footer>
+

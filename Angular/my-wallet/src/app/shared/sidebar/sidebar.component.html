@@ -1,12 +1,15 @@
-<p-sidebar [(visible)]="visibleSidebar1">
+<p-sidebar [(visible)]="visibleSidebar1" position="right">
   <div>
     <ul>
-      <li><a href="/">Pagina 1</a>
-      </li>
-    </ul>
-    <ul>
-      <li><a href="/">Pagina 2</a>
-      </li>
+      <a [routerLink]="['/']">
+        <li>Home</li>
+      </a>
+      <a [routerLink]="['/lancamentos']">
+        <li>Lançamentos</li>
+      </a>
+      <a [routerLink]="['/cadastro-de-lancamentos']">
+        <li>Cadastro de lançamentos</li>
+      </a>
     </ul>
   </div>
 </p-sidebar>
