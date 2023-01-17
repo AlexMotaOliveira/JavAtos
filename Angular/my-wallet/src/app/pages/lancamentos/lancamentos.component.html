@@ -1,1 +1,70 @@
-<p>lancamentos works!</p>
+<div class="card">
+  <h5>Row Editing</h5>
+      <p-table [value]="lista" dataKey="id" editMode="row" [tableStyle]="{'min-width': '50rem'}"
+      [paginator]="true" [rows]="10"
+      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[3,5,50]"
+      styleClass="p-datatable-sm"
+      >
+          <ng-template pTemplate="header">
+              <tr>
+                  <th style="width:20%">Code</th>
+                  <th style="width:20%">Name</th>
+                  <th style="width:20%">Category</th>
+                  <th style="width:20%">Price</th>
+                  <th style="width:20%"></th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
+              <tr [pEditableRow]="product">
+                  <td>
+                      <p-cellEditor>
+                          <ng-template pTemplate="input">
+                              <input pInputText type="text" [(ngModel)]="product.code" pTooltip="Insira um codigo" tooltipPosition="top">
+                          </ng-template>
+                          <ng-template pTemplate="output">
+                              {{product.code}}
+                          </ng-template>
+                      </p-cellEditor>
+                  </td>
+                  <td>
+                      <p-cellEditor>
+                          <ng-template pTemplate="input">
+                              <input pInputText type="text" [(ngModel)]="product.name" required>
+                          </ng-template>
+                          <ng-template pTemplate="output">
+                              {{product.name}}
+                          </ng-template>
+                      </p-cellEditor>
+                  </td>
+                  <td>
+                      <p-cellEditor>
+                          <ng-template pTemplate="input">
+                              <p-dropdown [options]="statuses" appendTo="body" [(ngModel)]="product.inventoryStatus" [style]="{'width':'100%'}"></p-dropdown>
+                          </ng-template>
+                          <ng-template pTemplate="output">
+                              {{product.inventoryStatus}}
+                          </ng-template>
+                      </p-cellEditor>
+                  </td>
+                  <td>
+                      <p-cellEditor>
+                          <ng-template pTemplate="input">
+                              <input pInputText type="text" [(ngModel)]="product.price">
+                          </ng-template>
+                          <ng-template pTemplate="output">
+                              {{product.price | currency: 'USD'}}
+                          </ng-template>
+                      </p-cellEditor>
+                  </td>
+                  <td>
+                      <div class="flex align-items-center justify-content-center gap-2">
+                          <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(product)" class="p-button-rounded p-button-text" pTooltip="Editar" tooltipPosition="top"></button>
+                          <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(product)" class="p-button-rounded p-button-text p-button-success mr-2" pTooltip="Salvar" tooltipPosition="top"></button>
+                          <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(product, ri)" class="p-button-rounded p-button-text p-button-danger" pTooltip="Cancelar" tooltipPosition="top"></button>
+                          <button *ngIf="!editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="deletar(product.code)" class="p-button-rounded p-button-text p-button-danger" pTooltip="Excluir" tooltipPosition="top"></button>
+                      </div>
+                  </td>
+              </tr>
+          </ng-template>
+      </p-table>
+  </div>
