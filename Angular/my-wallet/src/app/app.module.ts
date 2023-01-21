@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { TableModule } from 'primeng/table';
 import { PagesModule } from './pages/pages.module';
+import { TesteModule } from './teste/teste.module';
 
 
 @NgModule({
@@ -27,12 +28,13 @@ import { PagesModule } from './pages/pages.module';
     InputTextModule,
     FormsModule,
     TableModule,
-    PagesModule
+    PagesModule,
+    TesteModule
   ],
   providers: [],
   bootstrap: [AppComponent],
   exports:[
-    
+
   ]
 })
 export class AppModule { }
