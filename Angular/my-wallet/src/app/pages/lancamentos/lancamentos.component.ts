@@ -37,4 +37,19 @@ export class LancamentosComponent {
   deletar(code: number) {
     this.lista = this.lista.filter((item) => item.code !== code);
   }
+
+
+  descricao: string = '';
+  dataInicial ='';
+  dataFinal = '';
+
+
+  filtarTabela(){
+    this.lista = this.lista.filter((item) =>{
+      return item
+                .descricao
+                .toLowerCase()
+                .indexOf(this.descricao.toLowerCase()) >= 0;
+    });
+  }
 }

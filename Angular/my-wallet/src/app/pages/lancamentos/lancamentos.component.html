@@ -1,97 +1,126 @@
-<div class="card">
-  <h5>Row Editing</h5>
-      <p-table [value]="lista" dataKey="id" editMode="row" [tableStyle]="{'min-width': '50rem'}"
-      [paginator]="true" [rows]="10"
-      [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[3,5,50]"
-      styleClass="p-datatable-sm"
-      >
-          <ng-template pTemplate="header">
-              <tr>
-                  <th style="width:20%">Tipo</th>
-                  <th style="width:20%">local</th>
-                  <th style="width:20%">Descrição</th>
-                  <th style="width:20%">Data da Compra</th>
-                  <th style="width:20%">Data de Vencimento</th>
-                  <th style="width:20%">Valor</th>
-                  <th style="width:20%"></th>
-              </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
-              <tr [pEditableRow]="product">
-                  <td>
-                      <p-cellEditor>
-                          <ng-template pTemplate="input">
-                              <input pInputText type="text" [(ngModel)]="product.tipo" pTooltip="Insira um codigo" tooltipPosition="top">
-                          </ng-template>
-                          <ng-template pTemplate="output">
-                              {{product.tipo | uppercase}}
-                          </ng-template>
-                      </p-cellEditor>
-                  </td>
-                  <td>
-                      <p-cellEditor>
-                          <ng-template pTemplate="input">
-                              <input pInputText type="text" [(ngModel)]="product.local" required>
-                          </ng-template>
-                          <ng-template pTemplate="output">
-                              {{product.local | lowercase}}
-                          </ng-template>
-                      </p-cellEditor>
-                  </td>
-                  <td>
-                    <p-cellEditor>
-                        <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="product.descricao" required>
-                        </ng-template>
-                        <ng-template pTemplate="output">
-                            {{product.descricao}}
-                        </ng-template>
-                    </p-cellEditor>
-                </td>
-                <td>
-                  <p-cellEditor>
-                      <ng-template pTemplate="input">
-                          <input pInputText type="text" [(ngModel)]="product.dataDaCompra" required>
-                      </ng-template>
-                      <ng-template pTemplate="output">
-                          {{product.dataDaCompra}}
-                      </ng-template>
-                  </p-cellEditor>
-              </td>
-              <td>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <input pInputText type="text" [(ngModel)]="product.dataDeVencimento" required>
-                    </ng-template>
-                    <ng-template pTemplate="output">
-                        {{product.dataDeVencimento}}
-                    </ng-template>
-                </p-cellEditor>
-            </td>
-                  <td>
-                      <p-cellEditor>
-                          <ng-template pTemplate="input">
-                              <input pInputText type="text" [(ngModel)]="product.valor">
-                          </ng-template>
-                          <ng-template pTemplate="output">
-                              {{product.valor | currency:'BRL':'symbol':'.2-4'}}
-
-                          </ng-template>
-                      </p-cellEditor>
-                  </td>
-                  <td>
-                      <div class="flex align-items-center justify-content-center gap-2">
-                          <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(product)" class="p-button-rounded p-button-text" pTooltip="Editar" tooltipPosition="top"></button>
-                          <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(product)" class="p-button-rounded p-button-text p-button-success mr-2" pTooltip="Salvar" tooltipPosition="top"></button>
-                          <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(product, ri)" class="p-button-rounded p-button-text p-button-danger" pTooltip="Cancelar" tooltipPosition="top"></button>
-                          <button *ngIf="!editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="deletar(product.code)" class="p-button-rounded p-button-text p-button-danger" pTooltip="Excluir" tooltipPosition="top"></button>
-                      </div>
-                  </td>
-              </tr>
-          </ng-template>
-      </p-table>
+<div class="grid">
+  <span class="p-input-icon-left col-9">
+    <i class="pi pi-search"></i>
+    <input class="col-9" type="text" pInputText [(ngModel)]="descricao" placeholder="Search" />
+  </span>
+  <div class="col-12 div-input">
+    <input class="col-3 grid-input" type="date" pInputText [(ngModel)]="dataInicial" />
+    <input class="col-3" type="date" pInputText [(ngModel)]="dataFinal" />
   </div>
-  <br>
-  <pre>
+  <div class="col">
+    <button (click)="filtarTabela()" pButton type="button" label="Search" icon="pi pi-search" iconPos="right"
+      class="p-button-secondary grid-input"></button>
+  </div>
+</div>
+
+<br />
+
+<div class="card">
+  <p-table [value]="lista" dataKey="id" editMode="row" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true"
+    [rows]="10" [showCurrentPageReport]="true"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[3, 5, 50]"
+    styleClass="p-datatable-sm">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 20%">Tipo</th>
+        <th style="width: 20%">local</th>
+        <th style="width: 20%">Descrição</th>
+        <th style="width: 20%">Data da Compra</th>
+        <th style="width: 20%">Data de Vencimento</th>
+        <th style="width: 20%">Valor</th>
+        <th style="width: 20%"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
+      <tr [pEditableRow]="product">
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="product.tipo" pTooltip="Insira um codigo"
+                tooltipPosition="top" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ product.tipo | uppercase }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="product.local" required />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ product.local | lowercase }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="product.descricao" required />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ product.descricao }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="product.dataDaCompra" required />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ product.dataDaCompra }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="product.dataDeVencimento" required />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ product.dataDeVencimento }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="product.valor" />
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ product.valor | currency : "BRL" : "symbol" }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <div class="flex align-items-center justify-content-center gap-2">
+            <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil"
+              (click)="onRowEditInit(product)" class="p-button-rounded p-button-text" pTooltip="Editar"
+              tooltipPosition="top"></button>
+            <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
+              (click)="onRowEditSave(product)" class="p-button-rounded p-button-text p-button-success mr-2"
+              pTooltip="Salvar" tooltipPosition="top"></button>
+            <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
+              (click)="onRowEditCancel(product, ri)" class="p-button-rounded p-button-text p-button-danger"
+              pTooltip="Cancelar" tooltipPosition="top"></button>
+            <button *ngIf="!editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
+              (click)="deletar(product.code)" class="p-button-rounded p-button-text p-button-danger" pTooltip="Excluir"
+              tooltipPosition="top"></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<br />
+
+
+<pre>
+    {{descricao}} <br>
+    {{dataInicial}} <br>
+    {{dataFinal}} <br>
+
     {{lista | json}}
   </pre>
