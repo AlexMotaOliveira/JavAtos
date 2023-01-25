@@ -1,1 +1,38 @@
 <h1>Teste</h1>
+
+<form #formulario="ngForm" (ngSubmit)="salvar(formulario)">
+
+  <label for="">Tipo</label>
+  <input name="tipo" ngModel required><br>
+
+  <label for="">Descricao</label>
+  <input name="descricao" ngModel required="" ><br>
+
+  <label for="">dataDaCompra</label>
+  <input type="date" name="dataDaCompra" ngModel required><br>
+
+  <label for="">dataDeVencimento</label>
+  <input type="date" name="dataDeVencimento" ngModel ><br>
+
+  <label for="">valor</label>
+  <input name="valor" ngModel required><br>
+
+
+  <button>Adicionar</button>
+
+</form>
+<button (click)="salvarnoBD()">Salvar</button>
+
+<br>
+<br>
+<pre>
+{{lista | json}}
+</pre>
+
+
+<!--
+<form #formulario="ngForm" (ngSubmit)="salvar(formulario)"  novalidate>
+  <input name="first" ngModel #first="ngModel"><br>
+  <input name="last" ngModel><br>
+  <button>Salvar</button>
+</form> -->

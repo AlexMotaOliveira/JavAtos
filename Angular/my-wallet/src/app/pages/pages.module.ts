@@ -8,13 +8,15 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import {TooltipModule} from 'primeng/tooltip';
+import { HomeComponent } from './home/home.component';
 
 
 
 @NgModule({
   declarations: [
     LancamentosComponent,
-    CadastroDeLancamentosComponent
+    CadastroDeLancamentosComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import {TooltipModule} from 'primeng/tooltip';
   ],
   exports:[
     LancamentosComponent,
-    CadastroDeLancamentosComponent
+    CadastroDeLancamentosComponent,
+    HomeComponent
   ]
 })
 export class PagesModule { }

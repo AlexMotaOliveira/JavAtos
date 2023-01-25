@@ -28,8 +28,7 @@ import { TesteModule } from './teste/teste.module';
     InputTextModule,
     FormsModule,
     TableModule,
-    PagesModule,
-    TesteModule
+    PagesModule
   ],
   providers: [],
   bootstrap: [AppComponent],

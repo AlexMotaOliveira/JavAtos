@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-cadastro-de-lancamentos',
@@ -7,34 +8,41 @@ import { Component } from '@angular/core';
 })
 export class CadastroDeLancamentosComponent {
 
-  lista:any [] = [
-    {code: 1,	name:'lapis',	category:'escolar',	price: 1},
-    {code: 2,	name:'lapis',	category:'escolar',	price: 1},
-    {code: 3,	name:'lapis',	category:'escolar',	price: 1},
-    {code: 4,	name:'lapis',	category:'escolar',	price: 1},
-    {code: 5,	name:'lapis',	category:'escolar',	price: 1},
-    {code: 6,	name:'lapis',	category:'escolar',	price: 1},
-    {code: 7,	name:'lapis',	category:'escolar',	price: 1},
-    {code: 8,	name:'lapis',	category:'escolar',	price: 1},
-    {code: 9,	name:'lapis',	category:'escolar',	price: 1},
-    {code: 10,	name:'lapis',	category:'escolar',	price: 1}
+  count:number = 2;
+
+  lista:any[] = [
+    {
+      // code: 2,
+      // tipo: 'despesa',
+      // local: 'loja',
+      // descricao: 'compra de lapis',
+      // dataDaCompra: '20/01/2023',
+      // dataDeVencimento: '20/01/2023',
+      // valor: 50.12225,
+    }
   ];
-  statuses:any []= ['escolar','vesturario'];
 
-  onRowEditInit(product:any){
+  nome:string = '';
+  email:string = '';
 
+  code?:number;
+  tipo!:string;
+  descricao!:string;
+  dataDaCompra!:string;
+  dataDeVencimento!:string;
+  valor!:number;
+
+  salvar(formulario: NgForm){
+    this.count++;
+    console.log("entrou no metodo")
+    if(formulario.valid){
+      this.lista.push(formulario.value);
+      console.log("add na lista")
+    }
+    formulario.resetForm();
   }
 
-  onRowEditSave(product:any){
-
+  salvarnoBD(){
+    console.log("enviando para o bd...")
   }
-
-  onRowEditCancel(product:any, ri:any){
-
-  }
-
-  deletar(code:number){
-      this.lista = this.lista.filter(item => item.code !== code);
-  }
-
 }
