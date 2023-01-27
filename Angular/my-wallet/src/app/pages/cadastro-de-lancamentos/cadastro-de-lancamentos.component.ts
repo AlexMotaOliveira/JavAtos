@@ -10,17 +10,14 @@ export class CadastroDeLancamentosComponent {
 
   count:number = 2;
 
-  lista:any[] = [
-    {
-      // code: 2,
-      // tipo: 'despesa',
-      // local: 'loja',
-      // descricao: 'compra de lapis',
-      // dataDaCompra: '20/01/2023',
-      // dataDeVencimento: '20/01/2023',
-      // valor: 50.12225,
-    }
-  ];
+  lista:any[] = [];
+
+
+  tiposDespesa:any[] = [
+    {label: 'Despesa', value: 'DESPESA'},
+    {label: 'Receita', value: 'RECEITA'},
+
+  ]
 
   nome:string = '';
   email:string = '';
@@ -35,11 +32,14 @@ export class CadastroDeLancamentosComponent {
   salvar(formulario: NgForm){
     this.count++;
     console.log("entrou no metodo")
-    if(formulario.valid){
+    // if(formulario.valid){
       this.lista.push(formulario.value);
       console.log("add na lista")
-    }
-    formulario.resetForm();
+    // }
+    console.log(formulario)
+
+    // formulario.resetForm();
+
   }
 
   salvarnoBD(){

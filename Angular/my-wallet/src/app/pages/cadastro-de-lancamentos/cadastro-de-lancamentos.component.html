@@ -1,38 +1,42 @@
-<h1>Teste</h1>
+<h1>Cadastro de Receitas</h1>
+
+
 
 <form #formulario="ngForm" (ngSubmit)="salvar(formulario)">
 
-  <label for="">Tipo</label>
-  <input name="tipo" ngModel required><br>
 
-  <label for="">Descricao</label>
-  <input name="descricao" ngModel required="" ><br>
+  <p-selectButton [options]="tiposDespesa" name="tipo" ngModel required ></p-selectButton><br><br>
 
-  <label for="">dataDaCompra</label>
-  <input type="date" name="dataDaCompra" ngModel required><br>
+  <span class="p-float-label">
+    <input id="float-input" type="text" pInputText  name="local" ngModel required>
+    <label for="float-input">Local</label>
+  </span><br><br>
 
-  <label for="">dataDeVencimento</label>
-  <input type="date" name="dataDeVencimento" ngModel ><br>
+  <span class="p-float-label">
+    <input id="float-input" type="text" pInputText  name="descricao" ngModel required>
+    <label for="float-input">Descricao</label>
+  </span><br>
+
+
+  <label for="">Data da Compra</label>
+  <p-calendar type="date" name="dataDaCompra" dateFormat="dd/mm/yy" ngModel [showIcon]="true"></p-calendar><br><br>
+
+  <label for="">Data de Vencimento</label>
+  <p-calendar type="date" name="dataDeVencimento" dateFormat="dd/mm/yy" ngModel [showIcon]="true"></p-calendar><br><br>
+
 
   <label for="">valor</label>
-  <input name="valor" ngModel required><br>
+  <p-inputNumber name="valor" [(ngModel)]="valor" ngModel mode="currency" currency="BRL" locale="pt-BR" [minFractionDigits]="2"></p-inputNumber>
 
+  <br>
+  <br>
 
-  <button>Adicionar</button>
+  <button>Salvar</button>
 
 </form>
-<button (click)="salvarnoBD()">Salvar</button>
+<br>
+<br>
 
-<br>
-<br>
 <pre>
 {{lista | json}}
 </pre>
-
-
-<!--
-<form #formulario="ngForm" (ngSubmit)="salvar(formulario)"  novalidate>
-  <input name="first" ngModel #first="ngModel"><br>
-  <input name="last" ngModel><br>
-  <button>Salvar</button>
-</form> -->

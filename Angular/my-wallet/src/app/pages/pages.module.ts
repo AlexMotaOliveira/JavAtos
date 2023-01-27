@@ -9,6 +9,9 @@ import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
 import {TooltipModule} from 'primeng/tooltip';
 import { HomeComponent } from './home/home.component';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { CalendarModule } from 'primeng/calendar';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 
 
@@ -25,7 +28,11 @@ import { HomeComponent } from './home/home.component';
     FormsModule,
     TableModule,
     DropdownModule,
-    TooltipModule
+    TooltipModule,
+    SelectButtonModule,
+    InputTextModule,
+    CalendarModule,
+    InputNumberModule
   ],
   exports:[
     LancamentosComponent,
