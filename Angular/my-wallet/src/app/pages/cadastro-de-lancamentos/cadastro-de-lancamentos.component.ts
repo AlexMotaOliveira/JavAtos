@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { LancamentosService } from '../lancamentos.service';
 
 @Component({
   selector: 'app-cadastro-de-lancamentos',
@@ -7,6 +8,12 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./cadastro-de-lancamentos.component.scss']
 })
 export class CadastroDeLancamentosComponent {
+
+  lancamentosService;
+
+  constructor(lancamentosService:LancamentosService){
+      this.lancamentosService = lancamentosService;
+  }
 
   count:number = 2;
 
@@ -30,19 +37,15 @@ export class CadastroDeLancamentosComponent {
   valor!:number;
 
   salvar(formulario: NgForm){
-    this.count++;
-    console.log("entrou no metodo")
-    // if(formulario.valid){
-      this.lista.push(formulario.value);
-      console.log("add na lista")
-    // }
-    console.log(formulario)
-
-    // formulario.resetForm();
-
+      this.lancamentosService.salvar(formulario);
+      this.lista = this.lancamentosService.consultar();
   }
 
   salvarnoBD(){
     console.log("enviando para o bd...")
   }
+
+  // java contrutor
+  // TS não tem @AutoWired
+
 }

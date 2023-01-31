@@ -1,42 +1,58 @@
-<h1>Cadastro de Receitas</h1>
+<h1>Cadastro de Receitas / Despesas</h1>
 
 
 
-<form #formulario="ngForm" (ngSubmit)="salvar(formulario)">
+
+<form #formulario="ngForm" (ngSubmit)="salvar(formulario)" class="layout">
+
+  <div class="grid p-fluid">
+
+    <div class="col-12  md:col-6">
+      <p-selectButton [options]="tiposDespesa" name="tipo" ngModel required></p-selectButton>
+    </div>
+
+    <div class="col-12 md:col-3">
+      <span class="p-float-label">
+        <input id="float-input" type="text" pInputText name="local" ngModel required>
+        <label for="float-input">Local</label>
+      </span>
+    </div>
+
+    <div class="col-12 md:col-3">
+      <span class="p-float-label">
+        <input id="float-input" type="text" pInputText name="descricao" ngModel required>
+        <label for="float-input">Descricao</label>
+      </span>
+    </div>
 
 
-  <p-selectButton [options]="tiposDespesa" name="tipo" ngModel required ></p-selectButton><br><br>
 
-  <span class="p-float-label">
-    <input id="float-input" type="text" pInputText  name="local" ngModel required>
-    <label for="float-input">Local</label>
-  </span><br><br>
+    <div class="col-12 md:col-3">
+      <label for="">Data da Compra</label>
+      <p-calendar type="date" name="dataDaCompra" dateFormat="dd/mm/yy" ngModel [showIcon]="true"></p-calendar>
+    </div>
 
-  <span class="p-float-label">
-    <input id="float-input" type="text" pInputText  name="descricao" ngModel required>
-    <label for="float-input">Descricao</label>
-  </span><br>
-
-
-  <label for="">Data da Compra</label>
-  <p-calendar type="date" name="dataDaCompra" dateFormat="dd/mm/yy" ngModel [showIcon]="true"></p-calendar><br><br>
-
-  <label for="">Data de Vencimento</label>
-  <p-calendar type="date" name="dataDeVencimento" dateFormat="dd/mm/yy" ngModel [showIcon]="true"></p-calendar><br><br>
+    <div class="col-12 md:col-3">
+      <label for="">Data de Vencimento</label>
+      <p-calendar type="date" name="dataDeVencimento" dateFormat="dd/mm/yy" ngModel [showIcon]="true"></p-calendar>
+    </div>
 
 
-  <label for="">valor</label>
-  <p-inputNumber name="valor" [(ngModel)]="valor" ngModel mode="currency" currency="BRL" locale="pt-BR" [minFractionDigits]="2"></p-inputNumber>
+    <div class="col-6">
+      <label for="">valor</label>
+      <p-inputNumber name="valor" [(ngModel)]="valor" ngModel mode="currency" currency="BRL" locale="pt-BR"
+        [minFractionDigits]="2"></p-inputNumber>
+    </div>
 
-  <br>
-  <br>
+    <div class="col-3">
+      <br>
+      <button pButton label="Salvar" class="p-button-primary grid-input"></button>
 
-  <button>Salvar</button>
+    </div>
 
+  </div>
 </form>
-<br>
-<br>
 
-<pre>
+
+<br>
 {{lista | json}}
-</pre>

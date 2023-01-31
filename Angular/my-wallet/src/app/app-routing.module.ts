@@ -8,18 +8,19 @@ import { CadastroDeLancamentosComponent } from './pages/cadastro-de-lancamentos/
 import { HomeComponent } from './pages/home/home.component';
 
 const routes: Routes = [
-  {path: '', component: CadastroDeLancamentosComponent},
-  {path: 'lancamentos', component: LancamentosComponent},
-  {path: 'cadastro-de-lancamentos', component: CadastroDeLancamentosComponent},
-  {path:'formulario', component: FormularioComponent},
-  {path: 'home', component:HomeComponent},
-  {path: '**', redirectTo: '/' }
+  { path: '', component: HomeComponent },
+  { path: 'lancamentos', component: LancamentosComponent },
+  {
+    path: 'cadastro-de-lancamentos',
+    component: CadastroDeLancamentosComponent,
+  },
+  // {path:'formulario', component: FormularioComponent},
+  { path: 'home', component: HomeComponent },
+  { path: '**', redirectTo: '/' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
-
-
+export class AppRoutingModule {}
