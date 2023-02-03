@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Lancamento } from '../Lancamento';
 import { LancamentosService } from '../lancamentos.service';
 
 @Component({
@@ -9,15 +10,13 @@ import { LancamentosService } from '../lancamentos.service';
 })
 export class CadastroDeLancamentosComponent {
 
-  lancamentosService;
+  constructor(private lancamentosService:LancamentosService){
 
-  constructor(lancamentosService:LancamentosService){
-      this.lancamentosService = lancamentosService;
   }
 
   count:number = 2;
 
-  lista:any[] = [];
+  lista:Lancamento[] = [];
 
 
   tiposDespesa:any[] = [
@@ -40,12 +39,5 @@ export class CadastroDeLancamentosComponent {
       this.lancamentosService.salvar(formulario);
       this.lista = this.lancamentosService.consultar();
   }
-
-  salvarnoBD(){
-    console.log("enviando para o bd...")
-  }
-
-  // java contrutor
-  // TS não tem @AutoWired
 
 }

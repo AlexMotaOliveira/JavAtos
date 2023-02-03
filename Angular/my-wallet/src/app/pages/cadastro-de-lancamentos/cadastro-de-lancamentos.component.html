@@ -8,19 +8,19 @@
   <div class="grid p-fluid">
 
     <div class="col-12  md:col-6">
-      <p-selectButton [options]="tiposDespesa" name="tipo" ngModel required></p-selectButton>
+      <p-selectButton [options]="tiposDespesa" name="tipo" ngModel ></p-selectButton>
     </div>
 
     <div class="col-12 md:col-3">
       <span class="p-float-label">
-        <input id="float-input" type="text" pInputText name="local" ngModel required>
+        <input id="float-input" type="text" pInputText name="local" ngModel >
         <label for="float-input">Local</label>
       </span>
     </div>
 
     <div class="col-12 md:col-3">
       <span class="p-float-label">
-        <input id="float-input" type="text" pInputText name="descricao" ngModel required>
+        <input id="float-input" type="text" pInputText name="descricao" ngModel >
         <label for="float-input">Descricao</label>
       </span>
     </div>
@@ -55,4 +55,7 @@
 
 
 <br>
+<pre>
+  lista da tela de receita / despesas
 {{lista | json}}
+</pre>

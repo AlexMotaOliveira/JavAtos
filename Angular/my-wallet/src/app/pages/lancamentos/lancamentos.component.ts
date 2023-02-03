@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { LancamentosService } from '../lancamentos.service';
+import { Lancamento } from '../Lancamento';
 
 @Component({
   selector: 'app-lancamentos',
@@ -6,27 +8,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./lancamentos.component.scss'],
 })
 export class LancamentosComponent {
-  lista: any[] = [
-    {
-      code: 1,
-      tipo: 'despesa',
-      local: 'loja',
-      descricao: 'compra de lapis',
-      dataDaCompra: '20/01/2023',
-      dataDeVencimento: '20/01/2023',
-      valor: 50.12225,
-    },
-    {
-      code: 2,
-      tipo: 'Receita',
-      local: 'Atos',
-      descricao: 'Salario',
-      dataDaCompra: '20/01/2023',
-      dataDeVencimento: '20/01/2023',
-      valor: 10.000,
-    },
-  ];
-  statuses: any[] = ['escolar', 'vesturario'];
+
+
+  constructor(private lancamentosService: LancamentosService){
+    lancamentosService.getHttp();
+    this.lista = lancamentosService.consultar();
+  }
+
+  lista: any[] = [];
 
   onRowEditInit(product: any) {}
 
@@ -35,7 +24,8 @@ export class LancamentosComponent {
   onRowEditCancel(product: any, ri: any) {}
 
   deletar(code: number) {
-    this.lista = this.lista.filter((item) => item.code !== code);
+    this.lancamentosService.deletar(code);
+    this.lista = this.lancamentosService.consultar();
   }
 
 

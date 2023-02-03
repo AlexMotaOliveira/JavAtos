@@ -12,7 +12,8 @@ import { HomeComponent } from './home/home.component';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
-
+import { HttpClientModule } from '@angular/common/http';
+import { LancamentosService } from './lancamentos.service';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
     SelectButtonModule,
     InputTextModule,
     CalendarModule,
-    InputNumberModule
+    InputNumberModule,
+    HttpClientModule
   ],
   exports:[
     LancamentosComponent,
