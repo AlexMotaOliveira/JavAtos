@@ -37,7 +37,6 @@ export class CadastroDeLancamentosComponent {
 
   salvar(formulario: NgForm){
       this.lancamentosService.salvar(formulario);
-      this.lista = this.lancamentosService.consultar();
   }
 
 }

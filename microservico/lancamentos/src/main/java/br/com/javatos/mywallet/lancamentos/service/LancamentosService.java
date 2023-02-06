@@ -1,11 +1,10 @@
 package br.com.javatos.mywallet.lancamentos.service;
 
-import br.com.javatos.mywallet.lancamentos.model.Lancamentos;
+import br.com.javatos.mywallet.lancamentos.model.Lancamento;
 import br.com.javatos.mywallet.lancamentos.repository.LancamentosRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class LancamentosService {
@@ -16,11 +15,11 @@ public class LancamentosService {
     this.lancamentosRepository = lancamentosRepository;
   }
 
-  public void salvar(Lancamentos lancamentos){
-    lancamentosRepository.save(lancamentos);
+  public Lancamento salvar(Lancamento lancamento){
+    return lancamentosRepository.save(lancamento);
   }
 
-  public List<Lancamentos> consultar(){
+  public List<Lancamento> consultar(){
     return lancamentosRepository.findAll();
   }
 

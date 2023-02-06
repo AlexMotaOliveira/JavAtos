@@ -1,13 +1,16 @@
 package br.com.javatos.mywallet.lancamentos.controller;
 
 
-import br.com.javatos.mywallet.lancamentos.model.Lancamentos;
+import br.com.javatos.mywallet.lancamentos.model.Lancamento;
 import br.com.javatos.mywallet.lancamentos.service.LancamentosService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,8 +25,13 @@ public class LancamentosController {
   }
 
   @GetMapping
-  public List<Lancamentos> consultar() {
+  public List<Lancamento> consultar() {
     return lancamentosService.consultar();
+  }
+
+  @PostMapping
+  public Lancamento salvar(@RequestBody @Valid Lancamento lancamento){
+    return lancamentosService.salvar(lancamento);
   }
 
 }

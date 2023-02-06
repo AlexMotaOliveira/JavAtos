@@ -7,33 +7,19 @@ import { Lancamento } from './Lancamento';
   providedIn: 'root',
 })
 export class LancamentosService {
-  constructor(private http: HttpClient) {}
+  constructor(private httpClient: HttpClient) {}
 
   lancamentos: Lancamento[] = [];
-  // {
-  //   code: 1,
-  //   tipo: 'despesa',
-  //   local: 'loja',
-  //   descricao: 'compra de lapis',
-  //   dataDaCompra: new Date ('20/01/2023'),
-  //   dataDeVencimento: new Date ('20/01/2023'),
-  //   valor: 50.12225,
-  // },
-  // {
-  //   code: 2,
-  //   tipo: 'Receita',
-  //   local: 'Atos',
-  //   descricao: 'Salario',
-  //   dataDaCompra: new Date ('20/01/2023'),
-  //   dataDeVencimento: new Date ('20/01/2023'),
-  //   valor: 10.000,
-  // },
-  // ];
+  private apiBaseUrl = 'http://localhost:8080/lancamentos';
 
   salvar(formulario: any) {
     if (formulario.valid) {
       this.lancamentos.push(formulario.value);
-      // http
+      const lancamento = formulario.value;
+      this.httpClient.post<Lancamento>(this.apiBaseUrl, lancamento).subscribe({
+        next: (body) => console.log(body),
+        error: (err) => console.log('Error', err)
+      })
     }
     formulario.resetForm();
   }
@@ -45,13 +31,13 @@ export class LancamentosService {
   }
 
   getHttp() {
-    this.http.get<Lancamento[]>('http://localhost:8080/lancamentos').subscribe({
+    this.httpClient.get<Lancamento[]>(this.apiBaseUrl).subscribe({
       next: (item) => {
         item.forEach((data) => this.lancamentos.push(data));
       },
       error: (err) => console.log('Error', err),
     });
-    
+
     // return this.http.get<any>("http://localhost:8080/lancamentos");
   }
 
