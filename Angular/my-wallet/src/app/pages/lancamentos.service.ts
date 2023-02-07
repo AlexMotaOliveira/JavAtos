@@ -14,23 +14,28 @@ export class LancamentosService {
 
   salvar(formulario: any) {
     if (formulario.valid) {
-      this.lancamentos.push(formulario.value);
       const lancamento = formulario.value;
       this.httpClient.post<Lancamento>(this.apiBaseUrl, lancamento).subscribe({
         next: (body) => console.log(body),
-        error: (err) => console.log('Error', err)
-      })
+        error: (err) => console.log('Error', err),
+      });
     }
     formulario.resetForm();
   }
 
+  update(lancamento: Lancamento) {
+    this.httpClient.post<Lancamento>(this.apiBaseUrl, lancamento).subscribe({
+      next: (body) => console.log(body),
+      error: (err) => console.log('Error', err),
+    });
+  }
+
   consultar() {
-    console.log('lista dentro do service');
-    console.log(this.lancamentos);
     return this.lancamentos;
   }
 
   getHttp() {
+    this.lancamentos = [];
     this.httpClient.get<Lancamento[]>(this.apiBaseUrl).subscribe({
       next: (item) => {
         item.forEach((data) => this.lancamentos.push(data));
@@ -42,6 +47,9 @@ export class LancamentosService {
   }
 
   deletar(code: number) {
-    // this.lancamentos = this.lancamentos.filter((item) => item.code !== code);
+    this.httpClient.delete<any>(this.apiBaseUrl + '/' + code).subscribe({
+      next: (body) => console.log(body),
+      error: (err) => console.log('Error', err),
+    });
   }
 }

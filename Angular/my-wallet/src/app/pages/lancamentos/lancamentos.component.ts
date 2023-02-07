@@ -15,16 +15,19 @@ export class LancamentosComponent {
     this.lista = lancamentosService.consultar();
   }
 
-  lista: any[] = [];
+  lista: Lancamento[] = [];
 
-  onRowEditInit(product: any) {}
+  onRowEditInit(product: Lancamento) {}
 
-  onRowEditSave(product: any) {}
+  onRowEditSave(product: Lancamento) {
+    this.lancamentosService.update(product)
+  }
 
-  onRowEditCancel(product: any, ri: any) {}
+  onRowEditCancel(product: Lancamento, ri: any) {}
 
   deletar(code: number) {
     this.lancamentosService.deletar(code);
+    this.lancamentosService.getHttp();
     this.lista = this.lancamentosService.consultar();
   }
 
