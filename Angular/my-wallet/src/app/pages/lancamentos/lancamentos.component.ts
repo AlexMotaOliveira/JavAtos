@@ -10,12 +10,12 @@ import { Lancamento } from '../Lancamento';
 export class LancamentosComponent {
 
 
+   lista:Lancamento [] = [];
+
   constructor(private lancamentosService: LancamentosService){
     lancamentosService.getHttp();
     this.lista = lancamentosService.consultar();
   }
-
-  lista: Lancamento[] = [];
 
   onRowEditInit(product: Lancamento) {}
 
@@ -29,6 +29,7 @@ export class LancamentosComponent {
     this.lancamentosService.deletar(code);
     this.lancamentosService.getHttp();
     this.lista = this.lancamentosService.consultar();
+
   }
 
 

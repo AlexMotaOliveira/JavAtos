@@ -2,10 +2,13 @@ package br.com.javatos.mywallet.lancamentos.service;
 
 import br.com.javatos.mywallet.lancamentos.model.Lancamento;
 import br.com.javatos.mywallet.lancamentos.repository.LancamentosRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class LancamentosService {
 
@@ -25,5 +28,10 @@ public class LancamentosService {
 
   public void deletar(Long code){
     lancamentosRepository.deleteById(code);
+  }
+
+  public List<Lancamento> consultarporCode(Long code) {
+    log.info("busca da lista de Lancamentos no banco de dados, code: {}", code);
+    return lancamentosRepository.findByCode(code);
   }
 }

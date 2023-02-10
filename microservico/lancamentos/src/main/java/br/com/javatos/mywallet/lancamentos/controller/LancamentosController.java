@@ -3,6 +3,8 @@ package br.com.javatos.mywallet.lancamentos.controller;
 
 import br.com.javatos.mywallet.lancamentos.model.Lancamento;
 import br.com.javatos.mywallet.lancamentos.service.LancamentosService;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +33,7 @@ public class LancamentosController {
     return lancamentosService.consultar();
   }
 
+  @CacheEvict(cacheNames = "ListaDeCashePorCode") // ele limpa o Cache
   @PostMapping
   public Lancamento salvar(@RequestBody @Valid Lancamento lancamento){
     return lancamentosService.salvar(lancamento);
@@ -41,4 +44,10 @@ public class LancamentosController {
     lancamentosService.deletar(Code);
   }
 
+  @Cacheable(cacheNames = "ListaDeCashePorCode", key = "#code")    // retorna uma lista com 1MILHÃO lancamentos 2minuto  // com CACHE 1s
+  // code = 1   {chave: a@alex.com , valor: [{}]}}
+  @GetMapping("/{code}")
+  public List<Lancamento> consultarporCode(@PathVariable Long email) {
+    return lancamentosService.consultarporCode(email);
+  }
 }
