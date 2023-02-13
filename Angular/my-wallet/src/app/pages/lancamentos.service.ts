@@ -1,7 +1,10 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Lancamento } from './Lancamento';
+import { Lancamento } from './lancamentos/Lancamento';
+import { LancamentoFiltro } from './lancamentos/LancamentoFiltro';
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -13,14 +16,11 @@ export class LancamentosService {
   private apiBaseUrl = 'http://localhost:8080/lancamentos';
 
   salvar(formulario: any) {
-    if (formulario.valid) {
       const lancamento = formulario.value;
-      this.httpClient.post<Lancamento>(this.apiBaseUrl, lancamento).subscribe({
-        next: (body) => console.log(body),
-        error: (err) => console.log('Error', err),
-      });
-    }
-    formulario.resetForm();
+      const response = this.httpClient.post<Lancamento>(this.apiBaseUrl, lancamento);
+      formulario.resetForm();
+      return response;
+
   }
 
   update(lancamento: Lancamento) {
@@ -31,10 +31,6 @@ export class LancamentosService {
   }
 
   consultar() {
-    return this.lancamentos;
-  }
-
-  getHttp() {
     this.lancamentos = [];
     this.httpClient.get<Lancamento[]>(this.apiBaseUrl).subscribe({
       next: (item) => {
@@ -43,13 +39,34 @@ export class LancamentosService {
       error: (err) => console.log('Error', err),
     });
 
-    // return this.http.get<any>("http://localhost:8080/lancamentos");
+    return this.lancamentos;
   }
 
   deletar(code: number) {
-    this.httpClient.delete<any>(this.apiBaseUrl + '/' + code).subscribe({
-      next: (body) => console.log(body),
-      error: (err) => console.log('Error', err),
-    });
+    return this.httpClient.delete<any>(this.apiBaseUrl + '/' + code);
+  }
+
+
+  filtrarTabela(filtro: LancamentoFiltro){
+
+    let params = new HttpParams();
+
+    if(filtro.descricao != null){
+      console.log(filtro.descricao)
+      params = params.set('descricao', filtro.descricao)
+    }
+
+    if(filtro.dataInicial != null){
+      console.log(filtro.dataInicial)
+      params = params.set('dataInicial', filtro.dataInicial)
+    }
+
+    if(filtro.dataFinal != null){
+      console.log(filtro.dataFinal)
+      params = params.set('dataFinal', filtro.dataFinal)
+    }
+
+    console.log(params)
+    return this.httpClient.get<Lancamento[]>(this.apiBaseUrl, {params})
   }
 }

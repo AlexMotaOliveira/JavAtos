@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
@@ -29,22 +30,26 @@ public class LancamentosController {
   }
 
   @GetMapping
-  public List<Lancamento> consultar() {
-    return lancamentosService.consultar();
+  public List<Lancamento> consultar(@RequestParam(value = "descricao", required = false, defaultValue = "") String descricao,
+                                    @RequestParam(value = "dataInicial", required = false, defaultValue = "1900-01-01") String dataInicial,
+                                    @RequestParam(value = "dataFinal", required = false, defaultValue = "3000-12-31") String dataFinal) {
+    return lancamentosService.consultar(descricao, dataInicial, dataFinal);
   }
+
 
   @CacheEvict(cacheNames = "ListaDeCashePorCode") // ele limpa o Cache
   @PostMapping
-  public Lancamento salvar(@RequestBody @Valid Lancamento lancamento){
+  public Lancamento salvar(@RequestBody @Valid Lancamento lancamento) {
     return lancamentosService.salvar(lancamento);
   }
 
   @DeleteMapping("/{Code}")
-  public void apagar(@PathVariable Long Code){
+  public void apagar(@PathVariable Long Code) {
     lancamentosService.deletar(Code);
   }
 
-  @Cacheable(cacheNames = "ListaDeCashePorCode", key = "#code")    // retorna uma lista com 1MILHÃO lancamentos 2minuto  // com CACHE 1s
+  @Cacheable(cacheNames = "ListaDeCashePorCode", key = "#code")
+  // retorna uma lista com 1MILHÃO lancamentos 2minuto  // com CACHE 1s
   // code = 1   {chave: a@alex.com , valor: [{}]}}
   @GetMapping("/{code}")
   public List<Lancamento> consultarporCode(@PathVariable Long email) {

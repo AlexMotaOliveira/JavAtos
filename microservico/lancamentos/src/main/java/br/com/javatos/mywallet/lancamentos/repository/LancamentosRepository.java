@@ -10,4 +10,8 @@ import java.util.List;
 public interface LancamentosRepository extends JpaRepository<Lancamento, Long> {
 
   List<Lancamento> findByCode(Long code);
+
+  List<Lancamento> findByDescricaoContainingIgnoreCaseAndDataDaCompraContainingIgnoreCaseOrAndDataDeVencimentoContainingIgnoreCase(String descricao, String dataInicial, String dataFinal);
+
+  // descrição and dataInical or dataFinal
 }

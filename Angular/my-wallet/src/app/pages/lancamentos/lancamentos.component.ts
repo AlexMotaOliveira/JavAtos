@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LancamentosService } from '../lancamentos.service';
-import { Lancamento } from '../Lancamento';
+import { Lancamento } from './Lancamento';
+import { LancamentoFiltro } from './LancamentoFiltro';
 
 @Component({
   selector: 'app-lancamentos',
@@ -13,7 +14,6 @@ export class LancamentosComponent {
    lista:Lancamento [] = [];
 
   constructor(private lancamentosService: LancamentosService){
-    lancamentosService.getHttp();
     this.lista = lancamentosService.consultar();
   }
 
@@ -26,10 +26,11 @@ export class LancamentosComponent {
   onRowEditCancel(product: Lancamento, ri: any) {}
 
   deletar(code: number) {
-    this.lancamentosService.deletar(code);
-    this.lancamentosService.getHttp();
-    this.lista = this.lancamentosService.consultar();
-
+    this.lista = [];
+    this.lancamentosService.deletar(code).subscribe({
+      next: () => this.lista = this.lancamentosService.consultar(),
+      error: (err) => console.log('Error', err),
+    });
   }
 
 
@@ -39,11 +40,23 @@ export class LancamentosComponent {
 
 
   filtarTabela(){
-    this.lista = this.lista.filter((item) =>{
-      return item
-                .descricao
-                .toLowerCase()
-                .indexOf(this.descricao.toLowerCase()) >= 0;
-    });
+   this.lista =[];
+
+    const filtro:LancamentoFiltro = {
+      descricao: this.descricao,
+      dataInicial: this.dataFinal,
+      dataFinal:this.dataFinal
+    }
+
+
+   this.lancamentosService.filtrarTabela(filtro).subscribe({
+    next: (item) => {
+      item.forEach((data) => {
+        console.log(data)
+        this.lista.push(data)
+      });
+    },
+    error: (err) => console.log('Error', err),
+   })
   }
 }
