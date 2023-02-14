@@ -44,7 +44,7 @@ export class LancamentosComponent {
 
     const filtro:LancamentoFiltro = {
       descricao: this.descricao,
-      dataInicial: this.dataFinal,
+      dataInicial: this.dataInicial,
       dataFinal:this.dataFinal
     }
 

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -28,11 +29,8 @@ public class Lancamento {
   @NotBlank
   private String descricao;
 
-  @NotBlank
-  private String dataDaCompra;
-
-  @NotBlank
-  private String dataDeVencimento;
+  private LocalDate dataDaCompra;
+  private LocalDate dataDeVencimento;
 
   @Min(0)
   private BigDecimal valor;

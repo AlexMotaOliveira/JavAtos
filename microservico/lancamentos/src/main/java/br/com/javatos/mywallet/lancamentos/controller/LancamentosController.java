@@ -31,7 +31,7 @@ public class LancamentosController {
 
   @GetMapping
   public List<Lancamento> consultar(@RequestParam(value = "descricao", required = false, defaultValue = "") String descricao,
-                                    @RequestParam(value = "dataInicial", required = false, defaultValue = "1900-01-01") String dataInicial,
+                                    @RequestParam(value = "dataInicial", required = false, defaultValue = "2023-01-01") String dataInicial,
                                     @RequestParam(value = "dataFinal", required = false, defaultValue = "3000-12-31") String dataFinal) {
     return lancamentosService.consultar(descricao, dataInicial, dataFinal);
   }

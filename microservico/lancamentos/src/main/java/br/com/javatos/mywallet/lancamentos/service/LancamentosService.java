@@ -2,9 +2,11 @@ package br.com.javatos.mywallet.lancamentos.service;
 
 import br.com.javatos.mywallet.lancamentos.model.Lancamento;
 import br.com.javatos.mywallet.lancamentos.repository.LancamentosRepository;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
@@ -31,11 +33,14 @@ public class LancamentosService {
 
   public List<Lancamento> consultarporCode(Long code) {
     log.info("busca da lista de Lancamentos no banco de dados, code: {}", code);
+
+
     return lancamentosRepository.findByCode(code);
   }
 
-  public List<Lancamento> consultar(String descricao, String dataInicial, String dataFinal) {
-      return lancamentosRepository
-        .findByDescricaoContainingIgnoreCaseAndDataDaCompraContainingIgnoreCaseOrAndDataDeVencimentoContainingIgnoreCase(descricao, dataInicial, dataFinal);
+  public List<Lancamento> consultar(String descricao, @NonNull String dataInicial, @NonNull String dataFinal) {
+    LocalDate localDateInicial = LocalDate.parse(dataInicial).minusDays(1); // 2023-02-14 - 1 = 2023-02-13
+    LocalDate localDateFinal = LocalDate.parse(dataFinal).plusDays(1);         // 2023-02-14 + 1 = 2023-02-15
+     return lancamentosRepository.findByDescricaoContainingIgnoreCaseAndDataDaCompraAfterAndDataDeVencimentoBefore(descricao, localDateInicial, localDateFinal);
   }
 }
