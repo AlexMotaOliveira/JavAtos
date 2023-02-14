@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Lancamento } from '../Lancamento';
+import { Lancamento } from '../lancamentos/Lancamento';
 import { LancamentosService } from '../lancamentos.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { LancamentosService } from '../lancamentos.service';
 export class CadastroDeLancamentosComponent {
 
   constructor(private lancamentosService:LancamentosService){
-
+    this.lista = lancamentosService.consultar();
   }
 
   count:number = 2;
@@ -36,7 +36,13 @@ export class CadastroDeLancamentosComponent {
   valor!:number;
 
   salvar(formulario: NgForm){
-      this.lancamentosService.salvar(formulario);
+      this.lancamentosService.salvar(formulario).subscribe({
+        next: (body) => {
+          console.log(body);
+          this.lista = this.lancamentosService.consultar();
+        },
+        error: (err) => console.log('Error', err),
+      });
   }
 
 }
