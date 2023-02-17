@@ -5,6 +5,8 @@ import br.com.javatos.mywallet.lancamentos.model.Lancamento;
 import br.com.javatos.mywallet.lancamentos.service.LancamentosService;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,10 +32,13 @@ public class LancamentosController {
   }
 
   @GetMapping
-  public List<Lancamento> consultar(@RequestParam(value = "descricao", required = false, defaultValue = "") String descricao,
+  public Page<Lancamento> consultar(@RequestParam(value = "descricao", required = false, defaultValue = "") String descricao,
                                     @RequestParam(value = "dataInicial", required = false, defaultValue = "2023-01-01") String dataInicial,
-                                    @RequestParam(value = "dataFinal", required = false, defaultValue = "3000-12-31") String dataFinal) {
-    return lancamentosService.consultar(descricao, dataInicial, dataFinal);
+                                    @RequestParam(value = "dataFinal", required = false, defaultValue = "3000-12-31") String dataFinal,
+//                                    @RequestParam(value = "itensPorPagina", required = false, defaultValue = "10") int itensPorPagina,
+                                    Pageable pageable) {
+//    Pageable pageable1 = PageRequest.of(0, itensPorPagina);
+    return lancamentosService.consultar(descricao, dataInicial, dataFinal, pageable);
   }
 
 

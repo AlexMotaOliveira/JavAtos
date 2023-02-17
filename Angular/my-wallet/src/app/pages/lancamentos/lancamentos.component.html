@@ -1,11 +1,11 @@
 <div class="grid">
   <span class="p-input-icon-left col-9">
     <i class="pi pi-search"></i>
-    <input class="col-9" type="text" pInputText [(ngModel)]="descricao" placeholder="Descrição..." />
+    <input class="col-9" type="text" pInputText [(ngModel)]="filtro.descricao" placeholder="Descrição..." />
   </span>
   <div class="col-12 div-input">
-    <input class="col-3 grid-input" type="date" pInputText [(ngModel)]="dataInicial" />
-    <input class="col-3" type="date" pInputText [(ngModel)]="dataFinal" />
+    <input class="col-3 grid-input" type="date" pInputText [(ngModel)]="filtro.dataInicial" />
+    <input class="col-3" type="date" pInputText [(ngModel)]="filtro.dataFinal" />
   </div>
   <div class="col">
     <button (click)="filtarTabela()" pButton type="button" label="Search" icon="pi pi-search" iconPos="right"
@@ -15,10 +15,15 @@
 
 <br />
 
-<div class="card">
-  <p-table [value]="lista" dataKey="id" editMode="row" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true"
-    [rows]="10" [showCurrentPageReport]="true"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[3, 5, 50]"
+<div class="card" #rowss ="">
+  <p-table [value]="lista" dataKey="id" editMode="row" [tableStyle]="{ 'min-width': '50rem' }"
+  [paginator]="true"
+  [rows]="rows"
+  [lazy]="true"
+  [totalRecords]="totalElements"
+  (onLazyLoad)="aoSelecionarPagina($event)"
+  [showCurrentPageReport]="true"
+    currentPageReportTemplate="Item {first} a {last} de {totalRecords} Itens" [rowsPerPageOptions]="[5, 10, 50]"
     styleClass="p-datatable-sm">
     <ng-template pTemplate="header">
       <tr>

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 
 import { Lancamento } from './lancamentos/Lancamento';
 import { LancamentoFiltro } from './lancamentos/LancamentoFiltro';
+import { LancamentoPaginavel } from './lancamentos/LancamentoPaginavel';
 
 
 
@@ -51,22 +52,26 @@ export class LancamentosService {
 
     let params = new HttpParams();
 
+
+    params = params.set('size', filtro.itensPorPagina);
+    params = params.set('page', filtro.pagina);
+
     if(filtro.descricao != null){
-      console.log(filtro.descricao)
+
       params = params.set('descricao', filtro.descricao)
     }
 
     if(filtro.dataInicial != null){
-      console.log(filtro.dataInicial)
+
       params = params.set('dataInicial', filtro.dataInicial)
     }
 
     if(filtro.dataFinal != null){
-      console.log(filtro.dataFinal)
+
       params = params.set('dataFinal', filtro.dataFinal)
     }
 
-    console.log(params)
-    return this.httpClient.get<Lancamento[]>(this.apiBaseUrl, {params})
+
+    return this.httpClient.get<LancamentoPaginavel>(this.apiBaseUrl, {params})
   }
 }

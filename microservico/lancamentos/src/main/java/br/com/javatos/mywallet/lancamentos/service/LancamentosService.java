@@ -4,6 +4,8 @@ import br.com.javatos.mywallet.lancamentos.model.Lancamento;
 import br.com.javatos.mywallet.lancamentos.repository.LancamentosRepository;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -38,9 +40,9 @@ public class LancamentosService {
     return lancamentosRepository.findByCode(code);
   }
 
-  public List<Lancamento> consultar(String descricao, @NonNull String dataInicial, @NonNull String dataFinal) {
+  public Page<Lancamento> consultar(String descricao, @NonNull String dataInicial, @NonNull String dataFinal, Pageable pageable) {
     LocalDate localDateInicial = LocalDate.parse(dataInicial).minusDays(1); // 2023-02-14 - 1 = 2023-02-13
     LocalDate localDateFinal = LocalDate.parse(dataFinal).plusDays(1);         // 2023-02-14 + 1 = 2023-02-15
-     return lancamentosRepository.findByDescricaoContainingIgnoreCaseAndDataDaCompraAfterAndDataDeVencimentoBefore(descricao, localDateInicial, localDateFinal);
+     return lancamentosRepository.findByDescricaoContainingIgnoreCaseAndDataDaCompraAfterAndDataDeVencimentoBefore(descricao, localDateInicial, localDateFinal, pageable);
   }
 }

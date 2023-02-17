@@ -12,9 +12,13 @@ export class LancamentosComponent {
 
 
    lista:Lancamento [] = [];
+   filtro: LancamentoFiltro = new LancamentoFiltro();
+   totalElements: number = 0;
+   rows = 5;
+
 
   constructor(private lancamentosService: LancamentosService){
-    this.lista = lancamentosService.consultar();
+    this.filtarTabela()
   }
 
   onRowEditInit(product: Lancamento) {}
@@ -28,35 +32,32 @@ export class LancamentosComponent {
   deletar(code: number) {
     this.lista = [];
     this.lancamentosService.deletar(code).subscribe({
-      next: () => this.lista = this.lancamentosService.consultar(),
+      next: () => this.filtarTabela(),
       error: (err) => console.log('Error', err),
     });
   }
 
 
-  descricao: string = '';
-  dataInicial ='';
-  dataFinal = '';
-
-
-  filtarTabela(){
+  filtarTabela(pagina: number = 0){
    this.lista =[];
+  this.filtro.pagina = pagina;
+  this.filtro.itensPorPagina = this.rows;
 
-    const filtro:LancamentoFiltro = {
-      descricao: this.descricao,
-      dataInicial: this.dataInicial,
-      dataFinal:this.dataFinal
-    }
-
-
-   this.lancamentosService.filtrarTabela(filtro).subscribe({
+   this.lancamentosService.filtrarTabela(this.filtro).subscribe({
     next: (item) => {
-      item.forEach((data) => {
-        console.log(data)
-        this.lista.push(data)
-      });
+      this.lista = item.content;
+      this.totalElements = item.totalElements;
     },
     error: (err) => console.log('Error', err),
    })
   }
+
+  aoSelecionarPagina(event: any){
+    const pagina = event.first / event.rows;
+    console.log(event);
+    console.log(pagina);
+    this.rows = event.rows;
+    this.filtarTabela(pagina);
+  }
+
 }
