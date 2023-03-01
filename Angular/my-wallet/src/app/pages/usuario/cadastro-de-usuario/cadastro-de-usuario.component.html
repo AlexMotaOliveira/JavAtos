@@ -1,0 +1,23 @@
+<br>
+
+<form #formulario="ngForm"  class="layout">
+<div class="grid">
+
+
+  <input class="col-9" type="text" pInputText name="nome" ngModel required  placeholder="nome..." />
+
+  <input class="col-9" type="email" pInputText name="email"  ngModel required placeholder="email..." />
+
+  <input class="col-9" type="password" pInputText name="senha" ngModel required placeholder="senha..." />
+
+  <div class="col">
+    <button  (click)="salvar(formulario)" pButton type="button" label="salvar"
+      class="p-button-secondary grid-input"></button>
+  </div>
+
+</div>
+</form>
+
+
+<br>
+{{usuario | json}}

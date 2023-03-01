@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NgForm, FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { TableModule } from 'primeng/table';
 import { PagesModule } from './pages/pages.module';
-import { TesteModule } from './teste/teste.module';
 
 
 @NgModule({

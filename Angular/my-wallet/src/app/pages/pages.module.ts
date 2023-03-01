@@ -13,14 +13,15 @@ import { SelectButtonModule } from 'primeng/selectbutton';
 import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { HttpClientModule } from '@angular/common/http';
-import { LancamentosService } from './lancamentos.service';
+import { CadastroDeUsuarioComponent } from './usuario/cadastro-de-usuario/cadastro-de-usuario.component';
 
 
 @NgModule({
   declarations: [
     LancamentosComponent,
     CadastroDeLancamentosComponent,
-    HomeComponent
+    HomeComponent,
+    CadastroDeUsuarioComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +40,8 @@ import { LancamentosService } from './lancamentos.service';
   exports:[
     LancamentosComponent,
     CadastroDeLancamentosComponent,
-    HomeComponent
+    HomeComponent,
+    CadastroDeUsuarioComponent
   ]
 })
 export class PagesModule { }
