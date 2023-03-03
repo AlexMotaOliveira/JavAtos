@@ -14,6 +14,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { HttpClientModule } from '@angular/common/http';
 import { CadastroDeUsuarioComponent } from './usuario/cadastro-de-usuario/cadastro-de-usuario.component';
+import { ListagemDeUsuarioComponent } from './usuario/listagem-de-usuario/listagem-de-usuario.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { CadastroDeUsuarioComponent } from './usuario/cadastro-de-usuario/cadast
     LancamentosComponent,
     CadastroDeLancamentosComponent,
     HomeComponent,
-    CadastroDeUsuarioComponent
+    CadastroDeUsuarioComponent,
+    ListagemDeUsuarioComponent
   ],
   imports: [
     CommonModule,
@@ -38,10 +40,6 @@ import { CadastroDeUsuarioComponent } from './usuario/cadastro-de-usuario/cadast
     HttpClientModule
   ],
   exports:[
-    LancamentosComponent,
-    CadastroDeLancamentosComponent,
-    HomeComponent,
-    CadastroDeUsuarioComponent
   ]
 })
 export class PagesModule { }

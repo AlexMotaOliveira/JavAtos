@@ -27,6 +27,7 @@ export class CadastroDeUsuarioComponent {
       },
       error: (err) => console.log('Error', err),
     });
+    formulario.reset();
 }
 
 }
