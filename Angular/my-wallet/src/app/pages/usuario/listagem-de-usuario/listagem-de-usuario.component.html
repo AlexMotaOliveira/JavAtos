@@ -1,0 +1,104 @@
+<div class="grid">
+  <span class="p-input-icon-left col-9">
+    <i class="pi pi-search"></i>
+    <input class="col-9" type="text" pInputText [(ngModel)]="filtro.nome"
+           placeholder="Descrição..."/>
+  </span>
+  <div class="col">
+    <button (click)="filtrarTabela()" pButton type="button" label="Search"
+            icon="pi pi-search" iconPos="right"
+            class="p-button-secondary grid-input"></button>
+  </div>
+</div>
+
+<br/>
+
+<div class="card">
+  <p-table [value]="lista" dataKey="id" editMode="row"
+           [tableStyle]="{ 'min-width': '50rem' }"
+           [paginator]="true"
+           [rows]="rows"
+           [lazy]="true"
+           [totalRecords]="totalElements"
+           (onLazyLoad)="aoSelecionarPagina($event)"
+           [showCurrentPageReport]="true"
+           currentPageReportTemplate="Item {first} a {last} de {totalRecords} Itens"
+           [rowsPerPageOptions]="[5, 10, 50]"
+           styleClass="p-datatable-sm">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 10%">Id</th>
+        <th style="width: 30%">Nome</th>
+        <th style="width: 20%">Email</th>
+        <th style="width: 20%">Senha</th>
+        <th style="width: 5%"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
+      <tr [pEditableRow]="product">
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="product.id"
+                     pTooltip="Insira um codigo"
+                     tooltipPosition="top"/>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ product.id }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="product.nome" required/>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ product.nome | lowercase }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="product.email" required/>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ product.email }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <div class="flex align-items-center justify-content-center gap-2">
+            <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow
+                    icon="pi pi-pencil"
+                    (click)="onRowEditInit(product)"
+                    class="p-button-rounded p-button-text" pTooltip="Editar"
+                    tooltipPosition="top"></button>
+            <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow
+                    icon="pi pi-check"
+                    (click)="onRowEditSave(product)"
+                    class="p-button-rounded p-button-text p-button-success mr-2"
+                    pTooltip="Salvar" tooltipPosition="top"></button>
+            <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow
+                    icon="pi pi-times"
+                    (click)="onRowEditCancel(product, ri)"
+                    class="p-button-rounded p-button-text p-button-danger"
+                    pTooltip="Cancelar" tooltipPosition="top"></button>
+            <button *ngIf="!editing" pButton pRipple type="button" pCancelEditableRow
+                    icon="pi pi-times"
+                    (click)="deletar(product.code)"
+                    class="p-button-rounded p-button-text p-button-danger"
+                    pTooltip="Excluir"
+                    tooltipPosition="top"></button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+<br/>
+
+<pre>
+{{lista | json}}
+</pre>

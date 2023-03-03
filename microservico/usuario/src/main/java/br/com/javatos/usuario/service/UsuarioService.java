@@ -3,14 +3,17 @@ package br.com.javatos.usuario.service;
 import br.com.javatos.usuario.model.Usuario;
 import br.com.javatos.usuario.repository.UsuarioRepository;
 import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UsuarioService {
   private final UsuarioRepository usuarioRepository;
 
-  public List<Usuario> buscarTodos() {
-    return this.usuarioRepository.findAll();
+  public Page<Usuario> buscarTodos(String nome, Pageable pageable) {
+    return this.usuarioRepository.findByNomeContainingIgnoreCase(nome, pageable);
   }
 
   public Usuario buscarUsuarioId(Long id) {

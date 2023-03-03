@@ -11,13 +11,9 @@ import { LancamentosService } from '../lancamentos.service';
 export class CadastroDeLancamentosComponent {
 
   constructor(private lancamentosService:LancamentosService){
-    this.lista = lancamentosService.consultar();
   }
 
   count:number = 2;
-
-  lista:Lancamento[] = [];
-
 
   tiposDespesa:any[] = [
     {label: 'Despesa', value: 'DESPESA'},
@@ -39,7 +35,6 @@ export class CadastroDeLancamentosComponent {
       this.lancamentosService.salvar(formulario).subscribe({
         next: (body) => {
           console.log(body);
-          this.lista = this.lancamentosService.consultar();
         },
         error: (err) => console.log('Error', err),
       });

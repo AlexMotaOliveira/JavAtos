@@ -10,8 +10,8 @@
 
   <input class="col-9" type="password" pInputText name="senha" ngModel required placeholder="senha..." />
 
-  <div class="col">
-    <button  (click)="salvar(formulario)" pButton type="button" label="salvar"
+  <div class="col-9">
+    <button (click)="salvar(formulario)"  pButton type="button" label="salvar" class="col-3"
       class="p-button-secondary grid-input"></button>
   </div>
 
@@ -20,4 +20,7 @@
 
 
 <br>
+<pre>
 {{usuario | json}}
+</pre>
+

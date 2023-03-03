@@ -54,8 +54,6 @@ export class LancamentosComponent {
 
   aoSelecionarPagina(event: any){
     const pagina = event.first / event.rows;
-    console.log(event);
-    console.log(pagina);
     this.rows = event.rows;
     this.filtarTabela(pagina);
   }
