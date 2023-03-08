@@ -34,37 +34,45 @@
         <th style="width: 5%"></th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-product let-editing="editing" let-ri="rowIndex">
-      <tr [pEditableRow]="product">
+    <ng-template pTemplate="body" let-usuario let-editing="editing" let-ri="rowIndex">
+      <tr [pEditableRow]="usuario">
         <td>
           <p-cellEditor>
             <ng-template pTemplate="input">
-              <input pInputText type="text" [(ngModel)]="product.id"
-                     pTooltip="Insira um codigo"
-                     tooltipPosition="top"/>
+              {{ usuario.id }}
             </ng-template>
             <ng-template pTemplate="output">
-              {{ product.id }}
+              {{ usuario.id }}
             </ng-template>
           </p-cellEditor>
         </td>
         <td>
           <p-cellEditor>
             <ng-template pTemplate="input">
-              <input pInputText type="text" [(ngModel)]="product.nome" required/>
+              <input pInputText type="text" [(ngModel)]="usuario.nome" required/>
             </ng-template>
             <ng-template pTemplate="output">
-              {{ product.nome | lowercase }}
+              {{ usuario.nome | lowercase }}
             </ng-template>
           </p-cellEditor>
         </td>
         <td>
           <p-cellEditor>
             <ng-template pTemplate="input">
-              <input pInputText type="text" [(ngModel)]="product.email" required/>
+              <input pInputText type="text" [(ngModel)]="usuario.email" required/>
             </ng-template>
             <ng-template pTemplate="output">
-              {{ product.email }}
+              {{ usuario.email }}
+            </ng-template>
+          </p-cellEditor>
+        </td>
+        <td>
+          <p-cellEditor>
+            <ng-template pTemplate="input">
+              <input pInputText type="text" [(ngModel)]="usuario.senha" required/>
+            </ng-template>
+            <ng-template pTemplate="output">
+              {{ usuario.senha }}
             </ng-template>
           </p-cellEditor>
         </td>
@@ -72,22 +80,22 @@
           <div class="flex align-items-center justify-content-center gap-2">
             <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow
                     icon="pi pi-pencil"
-                    (click)="onRowEditInit(product)"
+                    (click)="onRowEditInit(usuario)"
                     class="p-button-rounded p-button-text" pTooltip="Editar"
                     tooltipPosition="top"></button>
             <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow
                     icon="pi pi-check"
-                    (click)="onRowEditSave(product)"
+                    (click)="onRowEditSave(usuario)"
                     class="p-button-rounded p-button-text p-button-success mr-2"
                     pTooltip="Salvar" tooltipPosition="top"></button>
             <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow
                     icon="pi pi-times"
-                    (click)="onRowEditCancel(product, ri)"
+                    (click)="onRowEditCancel(usuario, ri)"
                     class="p-button-rounded p-button-text p-button-danger"
                     pTooltip="Cancelar" tooltipPosition="top"></button>
             <button *ngIf="!editing" pButton pRipple type="button" pCancelEditableRow
                     icon="pi pi-times"
-                    (click)="deletar(product.code)"
+                    (click)="deletar(usuario.id)"
                     class="p-button-rounded p-button-text p-button-danger"
                     pTooltip="Excluir"
                     tooltipPosition="top"></button>

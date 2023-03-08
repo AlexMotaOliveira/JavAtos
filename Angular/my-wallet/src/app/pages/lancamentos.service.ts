@@ -14,7 +14,7 @@ export class LancamentosService {
   constructor(private httpClient: HttpClient) {}
 
   lancamentos: Lancamento[] = [];
-  private apiBaseUrl = 'http://localhost:8080/lancamentos';
+  private apiBaseUrl = 'listagem/lancamentos';
 
   salvar(formulario: any) {
       const lancamento = formulario.value;

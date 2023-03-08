@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { UsuarioService } from '../usuario.service';
 import { UsuarioFiltro } from '../UsuarioFiltro';
 import {Usuario} from "../Usuario";
-import {LancamentosService} from "../../lancamentos.service";
 
 @Component({
   selector: 'app-listagem-de-usuario',
@@ -10,15 +9,14 @@ import {LancamentosService} from "../../lancamentos.service";
   styleUrls: ['./listagem-de-usuario.component.scss'],
 })
 export class ListagemDeUsuarioComponent {
-  constructor(private usuarioService: UsuarioService,
-              private lancamentosService: LancamentosService) {
+  constructor(private usuarioService: UsuarioService) {
     this.filtrarTabela();
   }
 
   lista:any[] = []
-  rows:number = 0;
+  rows:number = 5;
   filtro:UsuarioFiltro = new UsuarioFiltro();
-  totalElements:number = 5;
+  totalElements:number = 0;
 
 
   filtrarTabela(pagina: number = 0) {
@@ -36,13 +34,25 @@ export class ListagemDeUsuarioComponent {
     });
   }
 
-  aoSelecionarPagina(evento:any){}
+  aoSelecionarPagina(event:any){
+    const pagina = event.first / event.rows;
+    this.rows = event.rows;
+    this.filtrarTabela(pagina);
+  }
 
   onRowEditInit(usuario:Usuario){}
 
-  onRowEditSave(usuario:Usuario){}
+  onRowEditSave(usuario:Usuario){
+    this.usuarioService.update(usuario);
+    this.filtrarTabela();
+  }
 
   onRowEditCancel(usuario:Usuario, code:number){}
 
-  deletar(code:number){}
-}
+  deletar(id:number){
+    console.log(id)
+    this.usuarioService.deletar(id).subscribe({
+      next: (item) => this.filtrarTabela(),
+      error: (err) => console.log('Error', err),
+    });
+  }}

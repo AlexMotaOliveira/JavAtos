@@ -18,13 +18,13 @@ export class LancamentosComponent {
 
 
   constructor(private lancamentosService: LancamentosService){
-    this.filtarTabela()
+    this.filtrarTabela()
   }
 
   onRowEditInit(product: Lancamento) {}
 
   onRowEditSave(product: Lancamento) {
-    this.lancamentosService.update(product)
+    this.lancamentosService.update(product);
   }
 
   onRowEditCancel(product: Lancamento, ri: any) {}
@@ -32,13 +32,13 @@ export class LancamentosComponent {
   deletar(code: number) {
     this.lista = [];
     this.lancamentosService.deletar(code).subscribe({
-      next: () => this.filtarTabela(),
+      next: () => this.filtrarTabela(),
       error: (err) => console.log('Error', err),
     });
   }
 
 
-  filtarTabela(pagina: number = 0){
+  filtrarTabela(pagina: number = 0){
    this.lista =[];
   this.filtro.pagina = pagina;
   this.filtro.itensPorPagina = this.rows;
@@ -55,7 +55,7 @@ export class LancamentosComponent {
   aoSelecionarPagina(event: any){
     const pagina = event.first / event.rows;
     this.rows = event.rows;
-    this.filtarTabela(pagina);
+    this.filtrarTabela(pagina);
   }
 
 }

@@ -2,8 +2,6 @@ package br.com.javatos.usuario.controller;
 
 import br.com.javatos.usuario.model.Usuario;
 import br.com.javatos.usuario.service.UsuarioService;
-import java.util.List;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
+//@CrossOrigin
 @RestController
 @RequestMapping({"/usuario"})
-@CrossOrigin
 public class UsuarioController {
 
   @Autowired
@@ -31,11 +31,10 @@ public class UsuarioController {
   public Page<Usuario> filtrarNome(@RequestParam(value = "nome", required = false, defaultValue = "") String nome,
                                    Pageable pageable) {
 
-    Page<Usuario> usuarios = this.usuarioService.buscarTodos(nome, pageable);
-    return usuarios;
+    return usuarioService.buscarTodos(nome, pageable);
   }
 
-  @GetMapping({"/{id}"})
+  @GetMapping({"/{id}"})  // /usuario/{id}
   public Usuario buscarUsuarioId(@PathVariable Long id) {
     return this.usuarioService.buscarUsuarioId(id);
   }
@@ -46,8 +45,10 @@ public class UsuarioController {
     return this.usuarioService.salvarUsuario(usuario);
   }
 
-  @DeleteMapping({"/id"})
+//  @CrossOrigin
+  @DeleteMapping({"/{id}"})// /id   != /{id}
   @ResponseStatus(HttpStatus.NO_CONTENT)
+  //localhost:8081/usuario/12     //localhost:8081/usuario?id=12
   public void apagarUsuario(@PathVariable Long id) {
     this.usuarioService.apagarUsuario(id);
   }

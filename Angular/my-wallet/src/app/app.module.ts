@@ -11,8 +11,6 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { TableModule } from 'primeng/table';
 import { PagesModule } from './pages/pages.module';
-import { TesteModule } from './teste/teste.module';
-
 
 @NgModule({
   declarations: [
@@ -28,8 +26,7 @@ import { TesteModule } from './teste/teste.module';
     InputTextModule,
     FormsModule,
     TableModule,
-    PagesModule,
-    TesteModule
+    PagesModule
   ],
   providers: [],
   bootstrap: [AppComponent],
