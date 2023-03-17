@@ -19,13 +19,13 @@ export class UsuarioService {
   }
 
   update(usuario: Usuario) {
-    this.httpClient.post<Usuario>(this.apiBaseUrl, usuario).subscribe({
+    this.httpClient.put<Usuario>(this.apiBaseUrl, usuario).subscribe({
       next: (body) => console.log(body),
       error: (err) => console.log('Error', err),
     });
   }
 
-  filtrarTabela(filtro: UsuarioFiltro){
+  filtrarTabela(filtro: UsuarioFiltro = new UsuarioFiltro()){
 
     let params = new HttpParams();
     params = params.set('size', filtro.itensPorPagina);
@@ -42,6 +42,11 @@ export class UsuarioService {
     let params = new HttpParams();
     params = params.set('id', id);
     return this.httpClient.delete<any>(this.apiBaseUrl + '/' + id);
+
+  }
+
+  async getList(){
+    let data = await this.filtrarTabela();
 
   }
 }

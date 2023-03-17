@@ -21,17 +21,18 @@ export class CadastroDeLancamentosComponent {
 
   ]
 
-  nome:string = '';
-  email:string = '';
-
   code?:number;
   tipo!:string;
   descricao!:string;
   dataDaCompra!:string;
   dataDeVencimento!:string;
   valor!:number;
+  nome:string = '';
+  email:string = '';
+  minDateValue = new Date()
+  minDateValueVencimento = new Date(this.dataDaCompra)
 
-  salvar(formulario: NgForm){
+   salvar(formulario: NgForm){
       this.lancamentosService.salvar(formulario).subscribe({
         next: (body) => {
           console.log(body);

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -51,5 +52,11 @@ public class UsuarioController {
   //localhost:8081/usuario/12     //localhost:8081/usuario?id=12
   public void apagarUsuario(@PathVariable Long id) {
     this.usuarioService.apagarUsuario(id);
+  }
+
+  @PutMapping
+  @ResponseStatus(HttpStatus.CREATED)
+  public Usuario atualizarUsuario(@RequestBody @Valid Usuario usuario) {
+    return this.usuarioService.atualizarUsuario(usuario);
   }
 }

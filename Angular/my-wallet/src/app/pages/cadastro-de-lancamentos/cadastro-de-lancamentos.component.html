@@ -8,19 +8,20 @@
   <div class="grid p-fluid">
 
     <div class="col-12  md:col-6">
-      <p-selectButton [options]="tiposDespesa" name="tipo" ngModel  ></p-selectButton>
+      <p-selectButton [options]="tiposDespesa" name="tipo" ngModel required  ></p-selectButton>
     </div>
 
     <div class="col-12 md:col-3">
       <span class="p-float-label">
-        <input id="float-input" type="text" pInputText name="local" ngModel >
+      
+        <input id="float-input" type="text" pInputText name="local" ngModel required minlength="5">
         <label for="float-input">Local</label>
       </span>
     </div>
 
     <div class="col-12 md:col-3">
       <span class="p-float-label">
-        <input id="float-input" type="text" pInputText name="descricao" ngModel >
+        <input id="float-input" type="text" pInputText name="descricao" ngModel required minlength="5">
         <label for="float-input">Descricao</label>
       </span>
     </div>
@@ -29,7 +30,7 @@
 
     <div class="col-12 md:col-3">
       <label for="">Data da Compra</label>
-      <p-calendar type="date" name="dataDaCompra" dateFormat="dd/mm/yy" ngModel  [showIcon]="true" ></p-calendar>
+      <p-calendar type="date" name="dataDaCompra" dateFormat="dd/mm/yy" ngModel [minDate]="minDateValue" [showIcon]="true" ></p-calendar>
     </div>
 
     <div class="col-12 md:col-3">
@@ -46,7 +47,7 @@
 
     <div class="col-3">
       <br>
-      <button pButton label="Salvar" class="p-button-primary grid-input"></button>
+      <button [disabled]="!formulario.valid" pButton label="Salvar" class="p-button-primary grid-input"></button>
 
     </div>
 
