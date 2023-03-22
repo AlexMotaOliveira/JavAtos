@@ -33,9 +33,9 @@ public class Lancamento {
   @NotBlank
   private String descricao;
 
-  @NotBlank
+
   private LocalDate dataDaCompra;
-  @NotBlank
+
   private LocalDate dataDeVencimento;
 
   @Min(0)
