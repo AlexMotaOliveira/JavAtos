@@ -1,6 +1,8 @@
 package br.com.javatos.mywallet.lancamentos.config;
 
 
+import org.springframework.amqp.core.Binding;
+import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.DirectExchange;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -11,9 +13,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitConfig {
 
-  public static final String EXCHANGE = "lancamento";
-  public static final String LANCAMENTO_CADASTRAR = "lancamento.cadastrar";
-  public static final String LANCAMENTO_APAGAR = "lancamento.apagar";
+  public static final String CRIAR = "criar";
+  public static final String ALTERAR = "alterar";
+  public static final String LANCAMENTO = "lancamento";
+  public static final String EXCLUIR = "excluir";
 
   @Bean
   public MessageConverter messageConverter() {
@@ -21,21 +24,38 @@ public class RabbitConfig {
   }
 
   @Bean
-  public DirectExchange directExchange() {
-    return new DirectExchange(EXCHANGE);
+  public Queue queueCriar(){
+    return new Queue(CRIAR,true);
   }
 
   @Bean
-  public Queue queue() {
-    return new Queue(LANCAMENTO_CADASTRAR, true);
+  public Queue queueAlterar(){
+    return new Queue(ALTERAR,true);
+  }
+
+  @Bean
+  public Queue queueExcluir(){
+    return new Queue(EXCLUIR,true);
+  }
+
+  @Bean
+  public DirectExchange directExchange(){
+    return new DirectExchange(LANCAMENTO);
   }
 
 
   @Bean
-  public Queue queue1() {
-    return new Queue(LANCAMENTO_APAGAR, true);
+  public Binding bindingCriar(){
+    return BindingBuilder.bind(queueCriar()).to(directExchange()).withQueueName();
   }
 
+  @Bean
+  public Binding bindingAlterar(){
+    return BindingBuilder.bind(queueAlterar()).to(directExchange()).withQueueName();
+  }
 
-
+  @Bean
+  public Binding bindingExcluir(){
+    return BindingBuilder.bind(queueExcluir()).to(directExchange()).withQueueName();
+  }
 }

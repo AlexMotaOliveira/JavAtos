@@ -30,7 +30,6 @@ import { ListagemDeUsuarioComponent } from './usuario/listagem-de-usuario/listag
     ButtonModule,
     InputTextModule,
     FormsModule,
-    FormControl,
     TableModule,
     DropdownModule,
     TooltipModule,

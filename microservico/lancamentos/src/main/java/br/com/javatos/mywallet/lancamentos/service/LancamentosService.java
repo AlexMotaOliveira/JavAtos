@@ -34,11 +34,11 @@ public class LancamentosService {
     Email email = Email.builder()
       .emailTo("alexmotadev@gmail.com")
       .emailFrom("alexmotadev@gmail.com")
-      .subject("Alteração de lancamento")
-      .text("Olá, sua despesa/receita foi atualizada")
+      .subject("Nova despesa/receita")
+      .text("Olá, sua despesa/receita foi cadastrada")
       .build();
 
-    rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE, RabbitConfig.LANCAMENTO_CADASTRAR, email);
+    rabbitTemplate.convertAndSend(RabbitConfig.LANCAMENTO, RabbitConfig.CRIAR, email);
     return lancamentoEntity;
   }
 
@@ -57,7 +57,21 @@ public class LancamentosService {
       .text("Olá, sua despesa/receita foi excluida")
       .build();
 
-    rabbitTemplate.convertAndSend(RabbitConfig.EXCHANGE, RabbitConfig.LANCAMENTO_APAGAR, email);
+    rabbitTemplate.convertAndSend(RabbitConfig.LANCAMENTO, RabbitConfig.EXCLUIR, email);
+  }
+
+  public Lancamento alterar(Lancamento lancamento) {
+    Lancamento lancamentoEntity = lancamentosRepository.save(lancamento);
+
+    Email email = Email.builder()
+      .emailTo("alexmotadev@gmail.com")
+      .emailFrom("alexmotadev@gmail.com")
+      .subject("Alteração de algo")
+      .text("Olá, sua despesa/receita foi atualizada")
+      .build();
+
+    rabbitTemplate.convertAndSend(RabbitConfig.LANCAMENTO, email);
+    return lancamentoEntity;
   }
 
   public List<Lancamento> consultarporCode(Long code) {
@@ -72,4 +86,5 @@ public class LancamentosService {
     LocalDate localDateFinal = LocalDate.parse(dataFinal).plusDays(1);         // 2023-02-14 + 1 = 2023-02-15
      return lancamentosRepository.findByDescricaoContainingIgnoreCaseAndDataDaCompraAfterAndDataDeVencimentoBefore(descricao, localDateInicial, localDateFinal, pageable);
   }
+
 }

@@ -25,7 +25,7 @@ export class LancamentosService {
   }
 
   update(lancamento: Lancamento) {
-    this.httpClient.post<Lancamento>(this.apiBaseUrl, lancamento).subscribe({
+    this.httpClient.put<Lancamento>(this.apiBaseUrl, lancamento).subscribe({
       next: (body) => console.log(body),
       error: (err) => console.log('Error', err),
     });

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,5 +60,10 @@ public class LancamentosController {
   @GetMapping("/{code}")
   public List<Lancamento> consultarporCode(@PathVariable Long email) {
     return lancamentosService.consultarporCode(email);
+  }
+
+  @PutMapping
+  public Lancamento alterar(@RequestBody @Valid Lancamento lancamento) {
+    return lancamentosService.alterar(lancamento);
   }
 }
