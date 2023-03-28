@@ -16,11 +16,16 @@ public class SendEmailListener {
   @Autowired
   private EmailService emailService;
 
+  @Autowired
+  private RunnerRabbit runnerRabbit;
 
-  @RabbitListener(queues = RabbitConfig.CRIAR) // consumer
+
+  @RabbitListener(queues = RabbitConfig.CRIAR) // consumer padrão são 10*5ms
   public void listenerCriar(@Payload Email email) {
-    log.info("paylod Criar: {}", email);
-    emailService.enviarEmail(email);
+    runnerRabbit.run(() -> {
+      log.info("paylod Criar: {}", email);
+      emailService.enviarEmail(email);
+    });
   }
 
   @RabbitListener(queues = RabbitConfig.ALTERAR) // consumer
