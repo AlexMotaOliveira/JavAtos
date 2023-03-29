@@ -1,0 +1,54 @@
+#eureka:
+#  instance:
+#    hostname: localhost
+#  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: 'http://localhost:8761/eureka'
+#
+#server:
+#  port: 8080
+#
+#spring:
+#  application:
+#    name: gateway
+#  cloud:
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: true
+#          lower-case-service-id: true
+#      routes:
+#        - id: usuario
+#          uri: lb://usuario
+#          predicates:
+#            - Path=/usuario/**
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: usuario
+          uri: lb://usuario
+          predicates:
+            - Path=/usuario/**
+        - id: lancamentos
+          uri: lb://lancamentos
+          predicates:
+            - Path=/lancamentos/**
+        - id: email
+          uri: lb://email
+          predicates:
+            - Path=/email/**
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: 'http://localhost:8761/eureka'
+  instance:
+    hostname: localhost

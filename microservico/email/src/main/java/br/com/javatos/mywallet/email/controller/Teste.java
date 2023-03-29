@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @EnableScheduling
 public class Teste {
 
-  @Scheduled(fixedDelay = 100)
+//  @Scheduled(fixedDelay = 100)
   public void scheduleFixedDelayTask() {
     log.info("Fixed delay task - " + System.currentTimeMillis() / 1000);
   }

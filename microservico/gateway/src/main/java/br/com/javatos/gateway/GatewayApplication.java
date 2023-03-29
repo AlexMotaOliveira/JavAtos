@@ -1,19 +1,15 @@
-package br.com.javatos.mywallet.lancamentos;
+package br.com.javatos.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
-import javax.websocket.ClientEndpoint;
-
 @EnableEurekaClient
-@EnableCaching
 @SpringBootApplication
-public class LancamentosApplication {
+public class GatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(LancamentosApplication.class, args);
+		SpringApplication.run(GatewayApplication.class, args);
 	}
 
 }
