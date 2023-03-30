@@ -1,0 +1,23 @@
+server:
+  port: ${PORT:0}
+spring:
+  mail:
+    host: smtp.gmail.com
+    password: blxxzpdoeilzigbb
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    username: alexmotadev@gmail.com
+  main:
+    allow-bean-definition-overriding: true
+  rabbitmq:
+    addresses: amqp://localhost:5672
+    listener:
+      simple:
+        concurrency: 5
+        max-concurrency: 50
+        prefetch: 5
