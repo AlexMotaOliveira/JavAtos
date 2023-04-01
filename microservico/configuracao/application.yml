@@ -1,5 +1,5 @@
 server:
-  port: PORT:0
+  port: ${PORT}:0
 eureka:
   client:
     serviceUrl:
@@ -30,11 +30,3 @@ spring:
         concurrency: 5
         max-concurrency: 50
         prefetch: 5
-eureka:
-  client:
-    fetch-registry: false
-    register-with-eureka: false
-    service-url:
-      defaultzone: http://localhost:8761/eureka
-server:
-  port: 8761
