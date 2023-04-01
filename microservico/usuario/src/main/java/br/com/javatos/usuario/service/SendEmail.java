@@ -4,7 +4,7 @@ import br.com.javatos.usuario.model.Email;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient(name = "sendEmail", url = "http://localhost:8085/email")
+@FeignClient(name = "email", path = "/email")
 public interface SendEmail {
 
   @PostMapping

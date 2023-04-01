@@ -18,7 +18,7 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class UsuarioService {
 
-  private final String URL = "http://localhost:8085/email";
+  private final String URL = "http://localhost:8080/email";
 
   private final UsuarioRepository usuarioRepository;
   private final RestTemplate restTemplate;
