@@ -1,0 +1,40 @@
+server:
+  port: PORT:0
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: 'http://localhost:8761/eureka'
+  instance:
+    hostname: localhost
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    password: 123456
+    url: jdbc:mysql://localhost:3306/javatos?useTimezone=true&serverTimezone=America/Sao_Paulo
+    username: root
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+  main:
+    allow-bean-definition-overriding: true
+  rabbitmq:
+    addresses: amqp://localhost:5672
+    listener:
+      simple:
+        concurrency: 5
+        max-concurrency: 50
+        prefetch: 5
+eureka:
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultzone: http://localhost:8761/eureka
+server:
+  port: 8761
