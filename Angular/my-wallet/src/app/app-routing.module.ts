@@ -9,11 +9,11 @@ import { ListagemDeUsuarioComponent } from './pages/usuario/listagem-de-usuario/
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'lancamentos', component: LancamentosComponent },
   { path: 'cadastro-de-lancamentos', component: CadastroDeLancamentosComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'cadastro-de-usuario', component: CadastroDeUsuarioComponent },
   { path: 'usuario', component: ListagemDeUsuarioComponent },
+  { path: 'cadastro-de-usuario', component: CadastroDeUsuarioComponent },
   { path: '**', redirectTo: '/' },
 ];
 
