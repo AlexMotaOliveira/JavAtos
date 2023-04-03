@@ -1,5 +1,5 @@
 server:
-  port: ${PORT}:0
+  port: ${PORT:0}
 eureka:
   client:
     serviceUrl:
