@@ -18,10 +18,13 @@ public class Usuario {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
+
   @Column(nullable = false)
   private @NotBlank String nome;
+
   @Column(unique = true, nullable = false)
   private @Email String email;
+
   @Column(nullable = false)
   private @NotBlank String senha;
 }

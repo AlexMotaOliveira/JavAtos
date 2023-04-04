@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,6 +24,7 @@ public class UsuarioService {
   private final UsuarioRepository usuarioRepository;
   private final RestTemplate restTemplate;
   private final SendEmail sendEmail;
+  private final PasswordEncoder passwordEncoder;
 
   public Page<Usuario> buscarTodos(String nome, Pageable pageable) {
     return usuarioRepository.findByNomeContainingIgnoreCase(nome, pageable);
@@ -32,8 +34,16 @@ public class UsuarioService {
     return usuarioRepository.findById(id).orElse(new Usuario());
   }
 
+  public Usuario buscarUsuarioEmail(String email) {
+    Usuario usuario = usuarioRepository.findByEmailContainingIgnoreCase(email);
+    log.info("email: {}, Usuario: {}", email, usuario);
+    return usuario;
+  }
+
   public Usuario salvarUsuario(Usuario usuario) {
+    usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
     Usuario usuarioEntity = usuarioRepository.save(usuario);
+
     // apos o cadastro, enviar um email
 
     Email email = Email.builder()

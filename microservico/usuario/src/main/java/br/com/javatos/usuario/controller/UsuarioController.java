@@ -35,6 +35,12 @@ public class UsuarioController {
     return usuarioService.buscarTodos(nome, pageable);
   }
 
+
+  @GetMapping({"/email/{email}"})  // /usuario/{id}
+  public Usuario buscarUsuarioEmail(@PathVariable String email) {
+    return this.usuarioService.buscarUsuarioEmail(email);
+  }
+
   @GetMapping({"/{id}"})  // /usuario/{id}
   public Usuario buscarUsuarioId(@PathVariable Long id) {
     return this.usuarioService.buscarUsuarioId(id);
