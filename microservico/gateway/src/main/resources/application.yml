@@ -3,20 +3,24 @@ server:
 spring:
   application:
     name: gateway
-    config:
-      import: optional:configserver:http://localhost:8888
-  cloud:
-    gateway:
-      routes:
-        - id: usuario
-          uri: lb://usuario
-          predicates:
-            - Path=/usuario/**
-        - id: lancamentos
-          uri: lb://lancamentos
-          predicates:
-            - Path=/lancamentos/**
-        - id: email
-          uri: lb://email
-          predicates:
-            - Path=/email/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+zuul:
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  routes:
+    auth:
+      path: /auth/**
+      sensitive-headers: Cookie,Set-Cookie
+      service-id: auth
+    usuario:
+      path: /usuario/**
+      service-id: usuario
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
