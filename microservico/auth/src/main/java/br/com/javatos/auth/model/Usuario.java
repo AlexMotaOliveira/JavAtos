@@ -2,10 +2,12 @@ package br.com.javatos.auth.model;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 public class Usuario implements UserDetails {
@@ -13,7 +15,7 @@ public class Usuario implements UserDetails {
   private String nome;
   private String email;
   private String senha;
-  private List<String> roles;
+  private List<Permissao> permissoes;
 
   public String getNome() {
     return nome;
@@ -39,9 +41,20 @@ public class Usuario implements UserDetails {
     this.senha = senha;
   }
 
+  public List<Permissao> getPermissoes() {
+    return permissoes;
+  }
+
+  public void setPermissoes(List<Permissao> permissoes) {
+    this.permissoes = permissoes;
+  }
+
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return null;
+    return permissoes
+      .stream()
+      .map(permissao -> new SimpleGrantedAuthority("ROLE_" + permissao.getNome()))
+      .collect(Collectors.toList());
   }
 
   @Override

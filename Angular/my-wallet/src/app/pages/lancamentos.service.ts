@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Lancamento } from './lancamentos/Lancamento';
@@ -14,7 +14,7 @@ export class LancamentosService {
   constructor(private httpClient: HttpClient) {}
 
   lancamentos: Lancamento[] = [];
-  private apiBaseUrl = 'listagem/lancamentos';
+  private apiBaseUrl = 'listagem/lancamentos/lancamentos';
 
   salvar(formulario: any) {
       const lancamento = formulario.value;
@@ -32,8 +32,14 @@ export class LancamentosService {
   }
 
   consultar() {
+
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders()
+    .append('Authorization',  `Bearer ${token}`)
+
     this.lancamentos = [];
-    this.httpClient.get<Lancamento[]>(this.apiBaseUrl).subscribe({
+    this.httpClient.get<Lancamento[]>(this.apiBaseUrl, {headers}).subscribe({
       next: (item) => {
         item.forEach((data) => this.lancamentos.push(data));
       },
@@ -50,9 +56,12 @@ export class LancamentosService {
 
   filtrarTabela(filtro: LancamentoFiltro){
 
+
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders()
+    .append('Authorization',  `Bearer ${token}`)
+
     let params = new HttpParams();
-
-
     params = params.set('size', filtro.itensPorPagina);
     params = params.set('page', filtro.pagina);
 
@@ -72,6 +81,6 @@ export class LancamentosService {
     }
 
 
-    return this.httpClient.get<LancamentoPaginavel>(this.apiBaseUrl, {params})
+    return this.httpClient.get<LancamentoPaginavel>(this.apiBaseUrl, {params, headers})
   }
 }

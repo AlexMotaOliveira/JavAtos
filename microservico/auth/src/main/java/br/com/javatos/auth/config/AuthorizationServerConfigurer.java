@@ -33,8 +33,9 @@ public class AuthorizationServerConfigurer extends AuthorizationServerConfigurer
       .withClient("angular")
       .secret(passwordEncoder.encode("123456"))
       .scopes("read", "write")
-      .authorizedGrantTypes("password")
-      .accessTokenValiditySeconds(3600);
+      .authorizedGrantTypes("password", "refresh_token")
+      .accessTokenValiditySeconds(360)
+      .refreshTokenValiditySeconds(3600);
   }
 
   @Override

@@ -1,6 +1,7 @@
 package br.com.javatos.usuario.service;
 
 import br.com.javatos.usuario.model.Email;
+import br.com.javatos.usuario.model.Permissao;
 import br.com.javatos.usuario.model.Usuario;
 import br.com.javatos.usuario.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -41,6 +42,7 @@ public class UsuarioService {
   }
 
   public Usuario salvarUsuario(Usuario usuario) {
+    usuario.getPermissoes().add(new Permissao("USER"));
     usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
     Usuario usuarioEntity = usuarioRepository.save(usuario);
 

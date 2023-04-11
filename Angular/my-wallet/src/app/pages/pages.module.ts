@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LancamentosComponent } from './lancamentos/lancamentos.component';
 import { CadastroDeLancamentosComponent } from './cadastro-de-lancamentos/cadastro-de-lancamentos.component';
-import { FormControl, FormsModule } from '@angular/forms';
+import {  FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
@@ -15,6 +15,7 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { HttpClientModule } from '@angular/common/http';
 import { CadastroDeUsuarioComponent } from './usuario/cadastro-de-usuario/cadastro-de-usuario.component';
 import { ListagemDeUsuarioComponent } from './usuario/listagem-de-usuario/listagem-de-usuario.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ListagemDeUsuarioComponent } from './usuario/listagem-de-usuario/listag
     CadastroDeLancamentosComponent,
     HomeComponent,
     CadastroDeUsuarioComponent,
-    ListagemDeUsuarioComponent
+    ListagemDeUsuarioComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,

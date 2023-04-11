@@ -1,24 +1,24 @@
 package br.com.javatos.usuario.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "Usuario_Table")
-public class Usuario {
+@Table(name = "Usuario_Permissao")
+@AllArgsConstructor
+@NoArgsConstructor
+public class Permissao {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
@@ -26,13 +26,7 @@ public class Usuario {
   @Column(nullable = false)
   private @NotBlank String nome;
 
-  @Column(unique = true, nullable = false)
-  private @Email String email;
-
-  @Column(nullable = false)
-  private @NotBlank String senha;
-
-  @ManyToMany(cascade = CascadeType.PERSIST)
-  Set<Permissao> permissoes = new HashSet<>();
-
+  public Permissao(String nome) {
+    this.nome = nome;
+  }
 }

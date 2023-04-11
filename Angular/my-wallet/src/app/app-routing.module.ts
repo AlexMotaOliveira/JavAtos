@@ -6,10 +6,12 @@ import { CadastroDeLancamentosComponent } from './pages/cadastro-de-lancamentos/
 import { HomeComponent } from './pages/home/home.component';
 import { CadastroDeUsuarioComponent } from './pages/usuario/cadastro-de-usuario/cadastro-de-usuario.component';
 import { ListagemDeUsuarioComponent } from './pages/usuario/listagem-de-usuario/listagem-de-usuario.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'lancamentos', component: LancamentosComponent },
   { path: 'cadastro-de-lancamentos', component: CadastroDeLancamentosComponent },
   { path: 'usuario', component: ListagemDeUsuarioComponent },

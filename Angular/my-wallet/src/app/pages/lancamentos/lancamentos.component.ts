@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LancamentosService } from '../lancamentos.service';
 import { Lancamento } from './Lancamento';
 import { LancamentoFiltro } from './LancamentoFiltro';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-lancamentos',
@@ -17,7 +18,8 @@ export class LancamentosComponent {
    rows = 5;
 
 
-  constructor(private lancamentosService: LancamentosService){
+  constructor(private lancamentosService: LancamentosService,
+              private router:Router){
     this.filtrarTabela()
   }
 
@@ -48,7 +50,11 @@ export class LancamentosComponent {
       this.lista = item.content;
       this.totalElements = item.totalElements;
     },
-    error: (err) => console.log('Error', err),
+    error: (err) => {
+      console.log('Error', err)
+      this.router.navigate(['login'])
+      localStorage.clear();
+    },
    })
   }
 

@@ -9,4 +9,8 @@ export class SidebarComponent {
 
   visibleSidebar1 = false;
 
+  isRouteLogin(){
+    return false;
+  }
+
 }
