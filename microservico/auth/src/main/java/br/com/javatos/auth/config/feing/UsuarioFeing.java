@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Component
-@FeignClient(name = "usuario", path = "/usuario/email")
+@FeignClient(name = "usuario", path = "/email")
 public interface UsuarioFeing {
 
   @GetMapping("/{email}")

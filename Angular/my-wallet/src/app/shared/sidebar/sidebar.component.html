@@ -13,8 +13,11 @@
       <a [routerLink]="['/usuario']">
         <li>Listagem de usuario</li>
       </a>
-      <a [routerLink]="['/cadastro-de-usuario']">
+      <a [routerLink]="['/cadastro-de-usuario']" *ngIf="validaPermissao('ROLE_ADMIN')">
         <li>Cadastro de usuario</li>
+      </a>
+      <a [routerLink]="['/login']" (click)="logout()">
+        <li>Sair</li>
       </a>
     </ul>
   </div>

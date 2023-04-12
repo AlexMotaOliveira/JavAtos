@@ -22,7 +22,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/lancamentos")
+@RequestMapping("/")
 @CrossOrigin()
 public class LancamentosController {
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthService} from "../../pages/login/auth/auth.service";
 
 @Component({
   selector: 'app-sidebar',
@@ -7,10 +8,17 @@ import { Component } from '@angular/core';
 })
 export class SidebarComponent {
 
+  constructor(private auth:AuthService) {
+  }
+
   visibleSidebar1 = false;
 
-  isRouteLogin(){
-    return false;
+  validaPermissao(permissao:string){
+    return this.auth.validaPermissao(permissao);
+  }
+
+  logout(){
+    this.auth.logout();
   }
 
 }

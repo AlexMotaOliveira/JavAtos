@@ -12,11 +12,16 @@ import { HomeComponent } from './home/home.component';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { CalendarModule } from 'primeng/calendar';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { CadastroDeUsuarioComponent } from './usuario/cadastro-de-usuario/cadastro-de-usuario.component';
 import { ListagemDeUsuarioComponent } from './usuario/listagem-de-usuario/listagem-de-usuario.component';
 import { LoginComponent } from './login/login.component';
+import {AuthinterceptorInterceptor} from "./login/auth/authinterceptor.interceptor";
+import {JwtHelperService, JwtModule} from "@auth0/angular-jwt";
 
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 
 @NgModule({
   declarations: [
@@ -39,9 +44,24 @@ import { LoginComponent } from './login/login.component';
     InputTextModule,
     CalendarModule,
     InputNumberModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["example.com"],
+        disallowedRoutes: ["http://example.com/examplebadroute/"],
+      },
+    }),
   ],
   exports:[
+  ],
+  providers:[
+    JwtHelperService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthinterceptorInterceptor,
+      multi: true
+    }
   ]
 })
 export class PagesModule { }

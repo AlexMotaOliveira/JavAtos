@@ -22,7 +22,7 @@ import javax.validation.Valid;
 
 //@CrossOrigin
 @RestController
-@RequestMapping({"/usuario"})
+@RequestMapping({"/"})
 public class UsuarioController {
 
   @Autowired

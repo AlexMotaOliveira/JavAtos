@@ -16,9 +16,6 @@ zuul:
       path: /auth/**
       sensitive-headers: Cookie,Set-Cookie
       service-id: auth
-    usuario:
-      path: /usuario/**
-      service-id: usuario
 
 eureka:
   client:

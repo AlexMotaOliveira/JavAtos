@@ -14,7 +14,7 @@ export class LancamentosService {
   constructor(private httpClient: HttpClient) {}
 
   lancamentos: Lancamento[] = [];
-  private apiBaseUrl = 'listagem/lancamentos/lancamentos';
+  private apiBaseUrl = 'listagem/lancamentos';
 
   salvar(formulario: any) {
       const lancamento = formulario.value;
@@ -33,13 +33,8 @@ export class LancamentosService {
 
   consultar() {
 
-    const token = localStorage.getItem('token');
-
-    const headers = new HttpHeaders()
-    .append('Authorization',  `Bearer ${token}`)
-
     this.lancamentos = [];
-    this.httpClient.get<Lancamento[]>(this.apiBaseUrl, {headers}).subscribe({
+    this.httpClient.get<Lancamento[]>(this.apiBaseUrl).subscribe({
       next: (item) => {
         item.forEach((data) => this.lancamentos.push(data));
       },
@@ -57,9 +52,7 @@ export class LancamentosService {
   filtrarTabela(filtro: LancamentoFiltro){
 
 
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders()
-    .append('Authorization',  `Bearer ${token}`)
+
 
     let params = new HttpParams();
     params = params.set('size', filtro.itensPorPagina);
@@ -79,8 +72,6 @@ export class LancamentosService {
 
       params = params.set('dataFinal', filtro.dataFinal)
     }
-
-
-    return this.httpClient.get<LancamentoPaginavel>(this.apiBaseUrl, {params, headers})
+    return this.httpClient.get<LancamentoPaginavel>(this.apiBaseUrl, {params})
   }
 }

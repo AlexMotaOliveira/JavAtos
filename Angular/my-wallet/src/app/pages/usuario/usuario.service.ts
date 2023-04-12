@@ -11,7 +11,7 @@ export class UsuarioService {
 
   constructor(private httpClient: HttpClient) {}
 
-  private apiBaseUrl = '/usuario/usuario';
+  private apiBaseUrl = '/usuario';
 
   salvar(formulario: any) {
     const lancamento = formulario.value;
